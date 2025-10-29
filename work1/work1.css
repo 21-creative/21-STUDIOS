@@ -1,0 +1,526 @@
+/* === BASIC SETUP === */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: white;
+  overflow-x: hidden;
+  height: 100vh;
+}
+
+/* Scroll space - creates the scrolling area */
+.scroll-space {
+  height: 300vh;
+  background-color: transparent;
+  position: relative;
+  z-index: 1;
+  margin-top: 100vh;
+}
+
+/* === HERO BACKGROUND === */
+#bg-video {
+  position: fixed;
+  top: 0;
+  left: -15%;
+  width: 130%;
+  height: 100vh;
+  object-fit: cover;
+  object-position: center;
+  z-index: -1;
+}
+
+/* Mobile hero background */
+@media (max-width: 768px) {
+  #bg-video {
+    left: -10%;
+    width: 120%;
+  }
+}
+
+@media (max-width: 480px) {
+  #bg-video {
+    left: -5%;
+    width: 110%;
+  }
+}
+
+/* === HERO HEADING === */
+.hero-heading {
+  font-family: "Pirata One", cursive;
+  font-size: 12.5rem;
+  color: white;
+  letter-spacing: 4px;
+  z-index: 2;
+  text-align: center;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+  margin: 0;
+  transition: transform 0.1s ease, opacity 0.1s ease;
+}
+
+/* Mobile hero heading */
+@media (max-width: 1200px) {
+  .hero-heading {
+    font-size: 10rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-heading {
+    font-size: 6rem;
+    letter-spacing: 3px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-heading {
+    font-size: 4rem;
+    letter-spacing: 2px;
+  }
+}
+
+@media (max-width: 360px) {
+  .hero-heading {
+    font-size: 3rem;
+    letter-spacing: 1px;
+  }
+}
+
+/* === NAVBAR === */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 70px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  transition: transform 0.3s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.navbar.hidden {
+  transform: translateY(-100%);
+}
+
+/* Mobile navbar */
+@media (max-width: 768px) {
+  .navbar {
+    height: 60px;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar {
+    height: 50px;
+  }
+}
+
+/* === LOGO BUTTON === */
+.logo-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.logo-img {
+  height: 88px;
+  width: auto;
+  max-width: 264px;
+  object-fit: contain;
+  border: none;
+  outline: none;
+  transition: transform 0.2s ease;
+}
+
+.logo-button:hover .logo-img {
+  transform: scale(1.25);
+}
+
+/* Mobile logo */
+@media (max-width: 768px) {
+  .logo-img {
+    height: 77px;
+    max-width: 220px;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo-img {
+    height: 66px;
+    max-width: 176px;
+  }
+}
+
+/* === PRODUCTS SECTION CONTAINER === */
+.products-section {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+  z-index: 800;
+  transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transform: translateY(100vh);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.products-section.active {
+  transform: translateY(0);
+}
+
+/* Mobile responsive for products container */
+@media (max-width: 480px) {
+  .products-section {
+    padding-top: 1rem;
+  }
+}
+
+@media (max-height: 500px) and (orientation: landscape) {
+  .products-section {
+    padding-top: 1rem;
+  }
+}
+
+/* === PRODUCTS OVERLAY LAYOUT === */
+.products-overlay {
+  width: 100%;
+  max-width: 1400px;
+  padding: 2rem;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: 3rem;
+  height: 100vh;
+  align-items: center;
+}
+
+/* Mobile responsive for overlay layout */
+@media (max-width: 768px) {
+  .products-overlay {
+    padding: 1rem;
+    gap: 2rem;
+  }
+}
+
+/* === COLLECTION TITLE === */
+.products-title {
+  font-family: "Pirata One", cursive;
+  font-size: 3.5rem;
+  color: #fff;
+  text-align: center;
+  letter-spacing: 8px;
+  text-transform: uppercase;
+  margin: 0;
+  position: relative;
+}
+
+.products-title::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #fff, transparent);
+}
+
+/* Mobile responsive for collection title */
+@media (max-width: 1024px) {
+  .products-title {
+    font-size: 3rem;
+    letter-spacing: 6px;
+  }
+}
+
+@media (max-width: 768px) {
+  .products-title {
+    font-size: 2.5rem;
+    letter-spacing: 4px;
+  }
+}
+
+@media (max-width: 480px) {
+  .products-title {
+    font-size: 2rem;
+    letter-spacing: 3px;
+  }
+}
+
+@media (max-height: 500px) and (orientation: landscape) {
+  .products-title {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+  }
+}
+
+/* === COVERFLOW CONTAINER === */
+.coverflow-container {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  perspective: 1200px;
+}
+
+.coverflow-track {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform-style: preserve-3d;
+}
+
+/* Mobile responsive for coverflow container */
+@media (max-width: 768px) {
+  .coverflow-container {
+    height: 300px;
+  }
+}
+
+@media (max-width: 480px) {
+  .coverflow-container {
+    height: 250px;
+  }
+}
+
+@media (max-height: 500px) and (orientation: landscape) {
+  .coverflow-container {
+    height: 200px;
+  }
+}
+
+/* === COVERFLOW ITEMS === */
+.coverflow-item {
+  position: absolute;
+  width: 280px;
+  height: 350px;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  cursor: pointer;
+  background: #2a2a2a;
+}
+
+.coverflow-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.coverflow-item:hover img {
+  transform: scale(1.05);
+}
+
+/* Coverflow Positioning */
+.coverflow-item:nth-child(1) {
+  transform: translateX(-280px) rotateY(30deg) scale(0.8);
+  z-index: 1;
+  opacity: 0.6;
+}
+.coverflow-item:nth-child(2) {
+  transform: translateX(-140px) rotateY(15deg) scale(0.9);
+  z-index: 2;
+  opacity: 0.8;
+}
+.coverflow-item:nth-child(3) {
+  transform: translateX(0) rotateY(0deg) scale(1);
+  z-index: 3;
+  opacity: 1;
+}
+.coverflow-item:nth-child(4) {
+  transform: translateX(140px) rotateY(-15deg) scale(0.9);
+  z-index: 2;
+  opacity: 0.8;
+}
+.coverflow-item:nth-child(5) {
+  transform: translateX(280px) rotateY(-30deg) scale(0.8);
+  z-index: 1;
+  opacity: 0.6;
+}
+.coverflow-item:nth-child(6) {
+  transform: translateX(420px) rotateY(-45deg) scale(0.7);
+  z-index: 0;
+  opacity: 0.4;
+}
+.coverflow-item:nth-child(7) {
+  transform: translateX(-420px) rotateY(45deg) scale(0.7);
+  z-index: 0;
+  opacity: 0.4;
+}
+
+/* Mobile responsive for coverflow items */
+@media (max-width: 768px) {
+  .coverflow-item {
+    width: 200px;
+    height: 250px;
+  }
+
+  .coverflow-item:nth-child(1) {
+    transform: translateX(-200px) rotateY(30deg) scale(0.8);
+  }
+  .coverflow-item:nth-child(2) {
+    transform: translateX(-100px) rotateY(15deg) scale(0.9);
+  }
+  .coverflow-item:nth-child(3) {
+    transform: translateX(0) rotateY(0deg) scale(1);
+  }
+  .coverflow-item:nth-child(4) {
+    transform: translateX(100px) rotateY(-15deg) scale(0.9);
+  }
+  .coverflow-item:nth-child(5) {
+    transform: translateX(200px) rotateY(-30deg) scale(0.8);
+  }
+  .coverflow-item:nth-child(6) {
+    transform: translateX(300px) rotateY(-45deg) scale(0.7);
+  }
+  .coverflow-item:nth-child(7) {
+    transform: translateX(-300px) rotateY(45deg) scale(0.7);
+  }
+}
+
+@media (max-width: 480px) {
+  .coverflow-item {
+    width: 160px;
+    height: 200px;
+  }
+}
+
+@media (max-height: 500px) and (orientation: landscape) {
+  .coverflow-item {
+    width: 140px;
+    height: 180px;
+  }
+}
+
+/* === COVERFLOW CONTROLS === */
+.coverflow-controls {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  transform: translateY(-50%);
+  display: flex;
+  justify-content: space-between;
+  padding: 0 2rem;
+  z-index: 10;
+}
+
+.coverflow-prev,
+.coverflow-next {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.coverflow-prev:hover,
+.coverflow-next:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.1);
+}
+
+/* Mobile responsive for coverflow controls */
+@media (max-width: 480px) {
+  .coverflow-controls {
+    padding: 0 1rem;
+  }
+
+  .coverflow-prev,
+  .coverflow-next {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+/* === PRODUCT INFO SECTION === */
+.product-info {
+  text-align: center;
+  color: white;
+  padding-top: 2rem;
+}
+
+.product-name {
+  font-family: "Pirata One", cursive;
+  font-size: 2.5rem;
+  letter-spacing: 4px;
+  margin: 0 0 1rem 0;
+  text-transform: uppercase;
+}
+
+.product-description {
+  font-size: 1.1rem;
+  color: #ccc;
+  margin: 0 0 1.5rem 0;
+  font-weight: 300;
+  letter-spacing: 1px;
+}
+
+.product-price {
+  font-size: 1.8rem;
+  font-weight: 300;
+  margin-bottom: 2rem;
+  color: #fff;
+}
+
+.cta-button {
+  background: linear-gradient(135deg, #fff 0%, #e0e0e0 100%);
+  color: #000;
+  border: none;
+  padding: 1rem 3rem;
+  font-size: 1.1rem;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.cta-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(255, 255, 255, 0.2);
+}
+
+/* Mobile responsive for product info */
+@media (max-width: 768px) {
+  .product-name {
+    font-size: 2rem;
+  }
+
+  .cta-button {
+    padding: 0.8rem 2rem;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .product-name {
+    font-size: 1.8rem;
+  }
+}

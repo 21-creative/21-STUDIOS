@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nepaesthetics</title>
+    <link rel="stylesheet" href="work1.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pirata+One&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- Transparent Navbar -->
+    <nav class="navbar" id="navbar">
+      <div class="logo-button">
+        <img src="images/1.png" alt="Logo" class="logo-img" />
+      </div>
+    </nav>
+
+    <!-- Background Video -->
+    <video autoplay muted loop playsinline id="bg-video">
+      <source src="videos/nepaesthetic.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+
+    <!-- Hero Heading -->
+    <div class="hero-heading">NEP AESTHETICS</div>
+
+    <!-- Products Section -->
+    <section class="products-section" id="products">
+      <div class="products-overlay">
+        <h2 class="products-title">OCT 2025 COLLECTION</h2>
+
+        <div class="coverflow-container">
+          <div class="coverflow-track" id="coverflowTrack">
+            <!-- Images will be dynamically added -->
+          </div>
+
+          <div class="coverflow-controls">
+            <button class="coverflow-prev" id="coverflowPrev">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path
+                  d="M15 18L9 12L15 6"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                />
+              </svg>
+            </button>
+            <button class="coverflow-next" id="coverflowNext">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path
+                  d="M9 18L15 12L9 6"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="product-info">
+          <h3 class="product-name" id="productName">PRODUCT 1</h3>
+          <p class="product-description">
+            Premium quality fabric with exclusive design
+          </p>
+          <div class="product-price">$298</div>
+          <button class="cta-button">ADD TO CART</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Scroll space -->
+    <div class="scroll-space"></div>
+
+    <script src="work1.js"></script>
+  </body>
+</html>
