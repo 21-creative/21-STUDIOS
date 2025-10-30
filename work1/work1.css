@@ -90,6 +90,7 @@ body {
 }
 
 /* === NAVBAR === */
+/* === NAVBAR === */
 .navbar {
   position: fixed;
   top: 0;
@@ -104,33 +105,111 @@ body {
   z-index: 1000;
   transition: transform 0.3s ease;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
+  padding: 0 2rem;
 }
 
 .navbar.hidden {
   transform: translateY(-100%);
 }
 
-/* Mobile navbar */
-@media (max-width: 768px) {
-  .navbar {
-    height: 60px;
-  }
+/* === HAMBURGER MENU === */
+.hamburger-menu {
+  display: flex;
+  align-items: center;
+  position: relative;
+  z-index: 1001;
 }
 
-@media (max-width: 480px) {
-  .navbar {
-    height: 50px;
-  }
+.hamburger-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  transition: transform 0.3s ease;
 }
 
-/* === LOGO BUTTON === */
+.hamburger-btn:hover {
+  transform: scale(1.1);
+}
+
+.hamburger-line {
+  width: 25px;
+  height: 2px;
+  background: white;
+  transition: all 0.3s ease;
+}
+
+.hamburger-btn.active .hamburger-line:nth-child(1) {
+  transform: rotate(45deg) translate(6px, 6px);
+}
+
+.hamburger-btn.active .hamburger-line:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger-btn.active .hamburger-line:nth-child(3) {
+  transform: rotate(-45deg) translate(6px, -6px);
+}
+
+/* Mobile Menu Overlay */
+.mobile-menu-overlay {
+  position: fixed;
+  top: 0;
+  left: -100%;
+  width: 300px;
+  height: 100vh;
+  background: rgba(10, 10, 10, 0.95);
+  backdrop-filter: blur(20px);
+  z-index: 999;
+  transition: left 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  padding: 80px 2rem 2rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.mobile-menu-overlay.active {
+  left: 0;
+}
+
+.mobile-menu-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-family: "Anton", sans-serif;
+  font-size: 1.5rem;
+  text-align: left;
+  padding: 1rem 0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.mobile-menu-btn:hover {
+  color: #ccc;
+  transform: translateX(10px);
+}
+
+.mobile-menu-btn:last-child {
+  border-bottom: none;
+}
+
+/* === LOGO BUTTON (CENTER) === */
 .logo-button {
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .logo-img {
@@ -147,21 +226,51 @@ body {
   transform: scale(1.25);
 }
 
-/* Mobile logo */
+/* === MOBILE RESPONSIVE === */
 @media (max-width: 768px) {
+  .navbar {
+    height: 60px;
+    padding: 0 1.5rem;
+  }
+
   .logo-img {
     height: 77px;
     max-width: 220px;
   }
+
+  .mobile-menu-overlay {
+    width: 280px;
+  }
+
+  .mobile-menu-btn {
+    font-size: 1.3rem;
+  }
 }
 
 @media (max-width: 480px) {
+  .navbar {
+    height: 50px;
+    padding: 0 1rem;
+  }
+
   .logo-img {
     height: 66px;
     max-width: 176px;
   }
-}
 
+  .mobile-menu-overlay {
+    width: 250px;
+  }
+
+  .mobile-menu-btn {
+    font-size: 1.1rem;
+    padding: 0.8rem 0;
+  }
+
+  .hamburger-line {
+    width: 22px;
+  }
+}
 /* === PRODUCTS SECTION CONTAINER === */
 .products-section {
   position: fixed;

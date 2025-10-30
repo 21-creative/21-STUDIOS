@@ -62,6 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
     new HeroHeadingAnimation();
    new ProductsAnimation();
    new CoverflowAnimation(); 
+   new HamburgerMenu(); 
 });
 
 //-------------------------------------------------------------------//
@@ -183,5 +184,32 @@ class CoverflowAnimation {
         const productNumber = (this.currentIndex + 1) % this.totalItems || this.totalItems;
         this.productName.textContent = `PRODUCT ${productNumber}`;
     }
+}
+
+/* === HAMBURGER MENU TOGGLE === */
+class HamburgerMenu {
+  constructor() {
+    this.hamburgerBtn = document.getElementById('hamburgerBtn');
+    this.mobileMenu = document.getElementById('mobileMenu');
+    this.menuBtns = this.mobileMenu.querySelectorAll('.mobile-menu-btn');
+    this.init();
+  }
+
+  init() {
+    this.hamburgerBtn.addEventListener('click', this.toggleMenu.bind(this));
+    this.menuBtns.forEach(btn => {
+      btn.addEventListener('click', this.closeMenu.bind(this));
+    });
+  }
+
+  toggleMenu() {
+    this.hamburgerBtn.classList.toggle('active');
+    this.mobileMenu.classList.toggle('active');
+  }
+
+  closeMenu() {
+    this.hamburgerBtn.classList.remove('active');
+    this.mobileMenu.classList.remove('active');
+  }
 }
 
