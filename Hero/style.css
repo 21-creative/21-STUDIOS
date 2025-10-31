@@ -7,8 +7,9 @@ body {
   overflow-x: hidden;
   height: 100vh;
 }
+
 .scroll-space {
-  height: 300vh; /* Reduced from 1000vh for less scrolling */
+  height: 300vh;
   background-color: transparent;
 }
 
@@ -76,20 +77,18 @@ body.text-animate .legacy-text {
 }
 
 /* === HERO CIRCLE === */
-/* === HERO CIRCLE === */
 .hero-circle {
   position: absolute;
   top: 35%;
   left: 69%;
-  transform: translate(-50%, -50%) translateY(-100vh); /* Start offscreen top */
+  transform: translate(-50%, -50%) translateY(-100vh);
   width: clamp(60px, 10vw, 120px);
   aspect-ratio: 1 / 1;
   border-radius: 50%;
   overflow: hidden;
   background-color: rgba(255, 255, 255, 0.2);
   z-index: 1;
-  animation: fallIn 1s ease-out forwards,
-    /* Fall in animation */ bounce 1.5s infinite 1s; /* Bounce starts after fall */
+  animation: fallIn 1s ease-out forwards, bounce 1.5s infinite 1s;
   transition: transform 1s ease-in-out, opacity 1s ease-in-out;
 }
 
@@ -101,16 +100,16 @@ body.text-animate .legacy-text {
   z-index: 2;
 }
 
-/* Fall in animation */
+/* Circle animations */
 @keyframes fallIn {
   0% {
     transform: translate(-50%, -50%) translateY(-100vh);
   }
   60% {
-    transform: translate(-50%, -50%) translateY(10%); /* Overshoot a bit */
+    transform: translate(-50%, -50%) translateY(10%);
   }
   100% {
-    transform: translate(-50%, -50%) translateY(0); /* Settle in final position */
+    transform: translate(-50%, -50%) translateY(0);
   }
 }
 
@@ -124,29 +123,7 @@ body.text-animate .legacy-text {
   }
 }
 
-/* Circle animation */
-@media (min-width: 769px) {
-  body.text-animate .hero-circle {
-    transform: translate(-50%, -50%) translateY(-100vh);
-    opacity: 0;
-  }
-}
-
-@media (max-width: 768px) {
-  .hero-circle {
-    display: none;
-  }
-}
-
-/* === Responsive text === */
-@media (max-width: 768px) {
-  .build-text,
-  .legacy-text {
-    font-size: 20vh;
-  }
-}
-
-/* === WORK LINE === */
+/* === WORK LINE & BLACK LINE === */
 .work {
   position: absolute;
   top: 50%;
@@ -178,7 +155,7 @@ body.text-animate .work {
   border-radius: 15px;
 }
 
-/* Glow effects - reduced scroll range */
+/* Glow effects */
 body.scrolled .work {
   background-color: rgb(253, 253, 253);
   box-shadow: 0 0 15px rgba(255, 255, 255, 0.8),
@@ -192,39 +169,7 @@ body.scrolled.peak-glow .work {
     0 0 60px rgba(255, 255, 255, 0.6), 0 0 80px rgba(255, 255, 255, 0.4);
 }
 
-body.scrolled.fade-out .work {
-  background-color: rgb(253, 253, 253);
-  box-shadow: 0 0 8px rgba(255, 255, 255, 0.6),
-    0 0 16px rgba(255, 255, 255, 0.4), 0 0 24px rgba(255, 255, 255, 0.2);
-  transition: all 1.5s ease-in;
-}
-
-/* === MOBILE RESPONSIVE === */
-@media (max-width: 768px) {
-  .work {
-    top: 46%;
-    height: 3px;
-    border-radius: 1.5px;
-  }
-
-  body.scrolled .work {
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8),
-      0 0 20px rgba(255, 255, 255, 0.6), 0 0 30px rgba(255, 255, 255, 0.4);
-  }
-
-  body.scrolled.peak-glow .work {
-    box-shadow: 0 0 15px rgba(255, 255, 255, 1),
-      0 0 30px rgba(255, 255, 255, 0.8), 0 0 45px rgba(255, 255, 255, 0.6);
-  }
-
-  body.scrolled.fade-out .work {
-    box-shadow: 0 0 6px rgba(255, 255, 255, 0.6),
-      0 0 12px rgba(255, 255, 255, 0.4), 0 0 18px rgba(255, 255, 255, 0.2);
-  }
-}
-/* === SERVICE SECTION === */
-/* === BLACK LINE === */
-
+/* Black line */
 .black-line {
   position: absolute;
   top: 50%;
@@ -234,23 +179,55 @@ body.scrolled.fade-out .work {
   background-color: #1e1f1e;
   border-radius: 2.5px;
   z-index: 6;
-  transform: translateY(-50%) translateX(150%); /* Start offscreen right */
+  transform: translateY(-50%) translateX(150%);
   transition: transform 1s ease-in-out;
 }
 
-/* Black line slides in when animation triggers */
 body.black-line-visible .black-line {
-  transform: translateY(-50%) translateX(0); /* Slide to position */
+  transform: translateY(-50%) translateX(0);
 }
 
-/* Mobile responsive for black line */
-@media (max-width: 768px) {
-  .black-line {
-    top: 46%;
-    height: 3px;
-    border-radius: 1.5px;
-  }
+/* === WORK 1 IMAGE BUTTON === */
+.work1-image-btn {
+  position: fixed;
+  top: 50%;
+  left: 100%;
+  width: 300px;
+  height: 200px;
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  border-radius: 15px;
+  overflow: hidden;
+  transition: all 0.8s ease-out;
+  z-index: 3;
+  transform: translateY(-50%) scale(1);
+  text-decoration: none;
+  display: block;
 }
+
+.work1-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 13px;
+  transition: all 0.3s ease-out;
+}
+
+/* Hover effects */
+.work1-image-btn:hover {
+  transform: translateY(-50%) scale(1.2);
+  border-color: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.8), 0 0 30px rgba(0, 0, 0, 0.6),
+    0 0 45px rgba(0, 0, 0, 0.4);
+}
+
+body.work1-animate .work1-image-btn {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1.5);
+}
+
 /* === NAV BAR === */
 .taskbar {
   position: fixed;
@@ -277,116 +254,13 @@ body.black-line-visible .black-line {
   transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
-/* Fade in animation for nav bar */
 @keyframes fadeIn {
   to {
     opacity: 1;
   }
 }
 
-/* === HAMBURGER MENU === */
-.hamburger-btn {
-  display: none;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 45px;
-  height: 45px;
-  background: white;
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  border-radius: 8px;
-  cursor: pointer;
-  padding: 8px;
-  gap: 4px;
-  transition: all 0.3s ease-out;
-}
-
-.hamburger-btn span {
-  width: 100%;
-  height: 3px;
-  background: black;
-  border-radius: 2px;
-  transition: all 0.3s ease-out;
-}
-
-/* Mobile menu dropdown */
-.mobile-menu {
-  position: absolute;
-  bottom: 100%;
-  left: 50%;
-  transform: translateX(-50%) scaleY(0);
-  transform-origin: bottom;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(15px);
-  border-radius: 12px;
-  padding: 15px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  min-width: 200px;
-  opacity: 0;
-  visibility: hidden;
-  transition: all 0.3s ease-out;
-  z-index: 1001;
-}
-
-.mobile-nav-btn {
-  font-family: "Anton", sans-serif;
-  font-size: 14px;
-  font-weight: normal;
-  color: black;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  padding: 10px 15px;
-  border-radius: 6px;
-  transition: all 0.3s ease-out;
-  text-align: center;
-}
-
-.mobile-waitlist-btn {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  line-height: 1;
-}
-
-.mobile-waitlist-btn span {
-  display: block;
-}
-
-.mobile-nav-btn:hover {
-  background: rgba(0, 0, 0, 0.1);
-  transform: translateY(-2px);
-}
-
-.mobile-waitlist-btn:hover {
-  background: rgba(255, 0, 0, 0.1);
-  transform: translateY(-2px);
-}
-
-.mobile-menu.active {
-  transform: translateX(-50%) scaleY(1);
-  opacity: 1;
-  visibility: visible;
-}
-
-/* Hamburger animation when active */
-.hamburger-btn.active span:nth-child(1) {
-  transform: rotate(45deg) translate(6px, 6px);
-}
-
-.hamburger-btn.active span:nth-child(2) {
-  opacity: 0;
-}
-
-.hamburger-btn.active span:nth-child(3) {
-  transform: rotate(-45deg) translate(6px, -6px);
-}
-
-/* === LOGO BUTTON === */
+/* Logo button */
 .logo-btn {
   width: 45px;
   height: 45px;
@@ -430,31 +304,7 @@ body.logo-peak-glow .logo-img {
   filter: brightness(1.5);
 }
 
-/* === STUDIO TEXT === */
-.studio-text {
-  font-family: "Anton", sans-serif;
-  font-size: 18px;
-  font-weight: bold;
-  color: black;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  transition: all 0.8s ease-out;
-}
-
-/* Studio text black neon glow effects */
-body.logo-glow .studio-text {
-  text-shadow: 0 0 15px rgba(0, 0, 0, 0.8), 0 0 30px rgba(0, 0, 0, 0.6),
-    0 0 45px rgba(0, 0, 0, 0.4);
-  color: rgba(0, 0, 0, 0.9);
-}
-
-body.logo-peak-glow .studio-text {
-  text-shadow: 0 0 20px rgba(0, 0, 0, 1), 0 0 40px rgba(0, 0, 0, 0.8),
-    0 0 60px rgba(0, 0, 0, 0.6), 0 0 80px rgba(0, 0, 0, 0.4);
-  color: rgba(0, 0, 0, 1);
-}
-
-/* === NAVIGATION BUTTONS === */
+/* Navigation buttons */
 .nav-buttons {
   display: flex;
   align-items: center;
@@ -504,7 +354,30 @@ body.logo-peak-glow .studio-text {
   transform: translateY(-1px) scale(1.2);
 }
 
-/* === HAMBURGER BUTTON === */
+/* Studio text */
+.studio-text {
+  font-family: "Anton", sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  color: black;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: all 0.8s ease-out;
+}
+
+body.logo-glow .studio-text {
+  text-shadow: 0 0 15px rgba(0, 0, 0, 0.8), 0 0 30px rgba(0, 0, 0, 0.6),
+    0 0 45px rgba(0, 0, 0, 0.4);
+  color: rgba(0, 0, 0, 0.9);
+}
+
+body.logo-peak-glow .studio-text {
+  text-shadow: 0 0 20px rgba(0, 0, 0, 1), 0 0 40px rgba(0, 0, 0, 0.8),
+    0 0 60px rgba(0, 0, 0, 0.6), 0 0 80px rgba(0, 0, 0, 0.4);
+  color: rgba(0, 0, 0, 1);
+}
+
+/* === MOBILE MENU === */
 .hamburger-btn {
   display: none;
   flex-direction: column;
@@ -529,7 +402,19 @@ body.logo-peak-glow .studio-text {
   transition: all 0.3s ease-out;
 }
 
-/* === MOBILE MENU DROPDOWN === */
+.hamburger-btn.active span:nth-child(1) {
+  transform: rotate(45deg) translate(6px, 6px);
+}
+
+.hamburger-btn.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger-btn.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(6px, -6px);
+}
+
+/* Mobile menu dropdown */
 .mobile-menu {
   position: absolute;
   bottom: 100%;
@@ -598,20 +483,44 @@ body.logo-peak-glow .studio-text {
   visibility: visible;
 }
 
-.hamburger-btn.active span:nth-child(1) {
-  transform: rotate(45deg) translate(6px, 6px);
-}
-
-.hamburger-btn.active span:nth-child(2) {
-  opacity: 0;
-}
-
-.hamburger-btn.active span:nth-child(3) {
-  transform: rotate(-45deg) translate(6px, -6px);
-}
-
-/* === MOBILE RESPONSIVE === */
+/* === RESPONSIVE DESIGN === */
 @media (max-width: 768px) {
+  /* Hero text */
+  .build-text,
+  .legacy-text {
+    font-size: 20vh;
+  }
+
+  /* Hero circle */
+  .hero-circle {
+    display: none;
+  }
+
+  /* Work line */
+  .work {
+    top: 46%;
+    height: 3px;
+    border-radius: 1.5px;
+  }
+
+  body.scrolled .work {
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8),
+      0 0 20px rgba(255, 255, 255, 0.6), 0 0 30px rgba(255, 255, 255, 0.4);
+  }
+
+  body.scrolled.peak-glow .work {
+    box-shadow: 0 0 15px rgba(255, 255, 255, 1),
+      0 0 30px rgba(255, 255, 255, 0.8), 0 0 45px rgba(255, 255, 255, 0.6);
+  }
+
+  /* Black line */
+  .black-line {
+    top: 46%;
+    height: 3px;
+    border-radius: 1.5px;
+  }
+
+  /* Taskbar */
   .taskbar {
     width: 85%;
     padding: 12px 20px;
@@ -649,9 +558,29 @@ body.logo-peak-glow .studio-text {
     max-width: 160px;
     left: 47%;
   }
+
+  /* Work 1 image button */
+  .work1-image-btn {
+    width: 250px;
+    height: 150px;
+    border-radius: 12px;
+  }
+
+  .work1-img {
+    border-radius: 10px;
+  }
+
+  body.work1-animate .work1-image-btn {
+    transform: translate(-50%, -50%) scale(1.2);
+  }
+
+  .work1-image-btn:hover {
+    transform: translateY(-50%) scale(1.1);
+  }
 }
 
 @media (max-width: 480px) {
+  /* Taskbar */
   .taskbar {
     width: 90%;
     padding: 10px 15px;
@@ -683,72 +612,8 @@ body.logo-peak-glow .studio-text {
   .mobile-waitlist-btn span {
     font-size: 11px;
   }
-}
-/* === WORK 1 IMAGE BUTTON === */
-/* === WORK 1 IMAGE BUTTON === */
-.work1-image-btn {
-  position: fixed;
-  top: 50%;
-  left: 100%;
-  width: 300px;
-  height: 200px;
-  background: transparent;
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  cursor: pointer;
-  border-radius: 15px;
-  overflow: hidden;
-  transition: all 0.8s ease-out;
-  z-index: 3;
-  transform: translateY(-50%) scale(1);
-  text-decoration: none; /* Add this - removes underline */
-  display: block; /* Add this - makes it behave like block element */
-}
 
-.work1-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 13px;
-  transition: all 0.3s ease-out;
-}
-
-/* Hover effects - scale and glow */
-.work1-image-btn:hover {
-  transform: translateY(-50%) scale(1.2);
-  border-color: rgba(255, 255, 255, 0.8);
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.8), 0 0 30px rgba(0, 0, 0, 0.6),
-    0 0 45px rgba(0, 0, 0, 0.4);
-}
-
-/* Animation to center at 105vh */
-body.work1-animate .work1-image-btn {
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(1.5);
-}
-
-/* === MOBILE RESPONSIVE === */
-@media (max-width: 768px) {
-  .work1-image-btn {
-    width: 250px;
-    height: 150px;
-    border-radius: 12px;
-  }
-
-  .work1-img {
-    border-radius: 10px;
-  }
-
-  body.work1-animate .work1-image-btn {
-    transform: translate(-50%, -50%) scale(1.2);
-  }
-
-  .work1-image-btn:hover {
-    transform: translateY(-50%) scale(1.1);
-  }
-}
-
-@media (max-width: 480px) {
+  /* Work 1 image button */
   .work1-image-btn {
     width: 200px;
     height: 120px;
@@ -767,24 +632,192 @@ body.work1-animate .work1-image-btn {
     transform: translateY(-50%) scale(1.05);
   }
 }
-/* === RIPPLE COVER === */
-.ripple-cover {
+
+/* Circle animation for desktop */
+@media (min-width: 769px) {
+  body.text-animate .hero-circle {
+    transform: translate(-50%, -50%) translateY(-100vh);
+    opacity: 0;
+  }
+}
+/* === WORK 1 GLOW BACKGROUND === */
+.work1-glow-background {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: #1e1f1e;
-  z-index: 10000;
-  opacity: 0;
-  pointer-events: none;
-  transform: scale(0);
-  border-radius: 50%;
-  transition: transform 1s cubic-bezier(0.65, 0, 0.35, 1), opacity 0.3s ease;
+  top: 50%;
+  left: 100%;
+  width: 150px;
+  height: 200px;
+  background: #0e0e0e;
+  border: none;
+  border-radius: 15px;
+  z-index: 2;
+  transform: translateY(-50%) scale(1);
+  transition: all 0.8s ease-out;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
-.ripple-cover.active {
-  opacity: 1;
-  pointer-events: all;
-  transform: scale(4);
+/* Services content for desktop */
+.services-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+}
+
+.services-header {
+  color: white;
+  font-family: "Anton", sans-serif;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 0 0 10px 0;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.9),
+    0 0 20px rgba(255, 255, 255, 0.7), 0 0 30px rgba(255, 255, 255, 0.5);
+  line-height: 1.2;
+}
+
+.services-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+.services-list li {
+  color: white;
+  font-family: "Anton", sans-serif;
+  font-size: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  line-height: 1.3;
+  margin-bottom: 4px;
+}
+
+/* Mobile text - hidden on desktop */
+.mobile-text {
+  display: none;
+}
+
+/* Desktop hover: Grey glow expanding to the right */
+.work1-image-btn:hover ~ .work1-glow-background,
+.work1-glow-background:hover {
+  border: none;
+  box-shadow: 0 0 20px rgba(128, 128, 128, 0.8),
+    0 0 40px rgba(128, 128, 128, 0.6), 0 0 60px rgba(128, 128, 128, 0.4),
+    0 0 80px rgba(128, 128, 128, 0.2);
+  left: 150%;
+  transform: translateY(-50%) scale(1);
+}
+
+/* Animation to center at 101vh */
+body.work1-animate .work1-glow-background {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1.5);
+}
+
+/* Desktop hover during animation: Grey glow expanding to the right */
+body.work1-animate .work1-image-btn:hover ~ .work1-glow-background,
+body.work1-animate .work1-glow-background:hover {
+  border: none;
+  box-shadow: 0 0 20px rgba(128, 128, 128, 0.8),
+    0 0 40px rgba(128, 128, 128, 0.6), 0 0 60px rgba(128, 128, 128, 0.4),
+    0 0 80px rgba(128, 128, 128, 0.2);
+  left: 70%;
+  transform: translateY(-50%) scale(1.5);
+}
+
+/* === MOBILE RESPONSIVE === */
+@media (max-width: 768px) {
+  .work1-glow-background {
+    width: 250px;
+    height: 150px;
+    border-radius: 25px;
+    left: 100%;
+    transform: translateY(-50%) scale(1) scaleX(0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+  }
+
+  /* Hide desktop content on mobile */
+  .services-content {
+    display: none;
+  }
+
+  /* Show mobile text */
+  .mobile-text {
+    display: block;
+    position: absolute;
+    color: white;
+    font-family: "Anton", sans-serif;
+    font-size: 20px;
+    font-weight: normal;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    transform: rotate(-90deg);
+    white-space: nowrap;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.9),
+      0 0 16px rgba(255, 255, 255, 0.7), 0 0 24px rgba(255, 255, 255, 0.5);
+    z-index: 3;
+    line-height: 1;
+  }
+
+  /* Mobile hover: Move right with grey glow */
+  .work1-image-btn:hover ~ .work1-glow-background,
+  .work1-glow-background:hover {
+    left: 110%;
+    transform: translateY(-50%) scale(1) scaleX(0.25);
+    box-shadow: 0 0 15px rgba(128, 128, 128, 0.8),
+      0 0 30px rgba(128, 128, 128, 0.6), 0 0 45px rgba(128, 128, 128, 0.4),
+      0 0 60px rgba(128, 128, 128, 0.2);
+  }
+
+  /* Mobile animation: Center with same scaling as work1 image */
+  body.work1-animate .work1-glow-background {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1.2) scaleX(0.25);
+  }
+
+  /* Mobile hover during animation: Move right with grey glow */
+  body.work1-animate .work1-image-btn:hover ~ .work1-glow-background,
+  body.work1-animate .work1-glow-background:hover {
+    left: 60%;
+    transform: translateY(-50%) scale(1.2) scaleX(0.25);
+    box-shadow: 0 0 15px rgba(128, 128, 128, 0.8),
+      0 0 30px rgba(128, 128, 128, 0.6), 0 0 45px rgba(128, 128, 128, 0.4),
+      0 0 60px rgba(128, 128, 128, 0.2);
+  }
+}
+
+@media (max-width: 480px) {
+  .work1-glow-background {
+    width: 200px;
+    height: 120px;
+    border-radius: 20px;
+  }
+
+  .mobile-text {
+    font-size: 15.4px;
+    letter-spacing: 1px;
+  }
+
+  body.work1-animate .work1-glow-background {
+    transform: translate(-50%, -50%) scale(1.1) scaleX(0.25);
+  }
+
+  body.work1-animate .work1-image-btn:hover ~ .work1-glow-background,
+  body.work1-animate .work1-glow-background:hover {
+    transform: translateY(-50%) scale(1.1) scaleX(0.25);
+  }
 }
