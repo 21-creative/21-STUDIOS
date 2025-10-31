@@ -8,26 +8,36 @@ window.addEventListener("scroll", function () {
 
   // Glow effect: 0-50vh = increase, 50vh+ = stay at peak
   if (scrollInVH > 0 && scrollInVH <= 50) {
-    document.body.classList.add("scrolled");
-    document.body.classList.remove("peak-glow");
+    document.body.classList.add("scrolled", "logo-glow");
+    document.body.classList.remove("peak-glow", "logo-peak-glow");
 
     // Increase glow intensity from 0 to 50vh
     if (scrollInVH > 25) {
-      document.body.classList.add("peak-glow");
+      document.body.classList.add("peak-glow", "logo-peak-glow");
     }
   } else if (scrollInVH > 50) {
     // Stay at peak glow after 50vh (no decrease)
-    document.body.classList.add("scrolled", "peak-glow");
+    document.body.classList.add(
+      "scrolled",
+      "peak-glow",
+      "logo-glow",
+      "logo-peak-glow"
+    );
   } else {
-    document.body.classList.remove("scrolled", "peak-glow");
+    document.body.classList.remove(
+      "scrolled",
+      "peak-glow",
+      "logo-glow",
+      "logo-peak-glow"
+    );
   }
 
-  // All other animations happen between 50vh-150vh (changed from 100vh-200vh)
-  if (scrollInVH > 50 && scrollInVH <= 150) {
+  // All other animations happen between 50vh-175vh
+  if (scrollInVH > 50 && scrollInVH <= 175) {
     document.body.classList.add("text-animate");
     document.body.classList.add("black-line-visible");
-  } else if (scrollInVH > 150) {
-    // Keep animations applied after 150vh
+  } else if (scrollInVH > 175) {
+    // Keep animations applied after 175vh
     document.body.classList.add("text-animate");
     document.body.classList.add("black-line-visible");
   } else {
@@ -35,15 +45,41 @@ window.addEventListener("scroll", function () {
     document.body.classList.remove("black-line-visible");
   }
 
-  // Work 1 image animation at 50vh (changed from 100vh)
-  if (scrollInVH >= 50) {
+  // Work animations timeline
+  if (scrollInVH >= 50 && scrollInVH < 100) {
+    // Work1 centered, Work2 hidden
     document.body.classList.add("work1-animate");
+    document.body.classList.remove(
+      "work1-slide-out",
+      "work1-expand-overlay",
+      "work2-animate",
+      "work2-slide-out"
+    );
+  } else if (scrollInVH >= 100 && scrollInVH < 175) {
+    // Work1 slides out, Work2 appears at position F
+    document.body.classList.add(
+      "work1-slide-out",
+      "work1-expand-overlay",
+      "work2-animate"
+    );
+    document.body.classList.remove("work1-animate", "work2-slide-out");
+  } else if (scrollInVH >= 175) {
+    // Work2 slides out at 175vh
+    document.body.classList.add("work2-slide-out", "work1-expand-overlay");
+    document.body.classList.remove("work2-animate");
   } else {
-    document.body.classList.remove("work1-animate");
+    // Reset all work animations
+    document.body.classList.remove(
+      "work1-animate",
+      "work1-slide-out",
+      "work1-expand-overlay",
+      "work2-animate",
+      "work2-slide-out"
+    );
   }
 });
 
-// ===== WORK 1 CLICK FUNCTION =====
+// ===== WORK CLICK FUNCTIONS =====
 
 //taskbar//
 // ===== TASKBAR HIDE/SHOW ON SCROLL =====
@@ -94,17 +130,18 @@ function scrollToTop() {
     behavior: "smooth",
   });
 }
-// ===== SCROLL TO WORK FUNCTION =====
+
 // ===== SCROLL TO WORK FUNCTION =====
 function scrollToWork() {
   const viewportHeight = window.innerHeight;
-  const targetScroll = viewportHeight * 0.51; // 51vh (changed from 101vh)
+  const targetScroll = viewportHeight * 0.51; // 51vh
 
   window.scrollTo({
     top: targetScroll,
     behavior: "smooth",
   });
 }
+
 // ===== MOBILE MENU TOGGLE =====
 function toggleMenu() {
   const hamburger = document.querySelector(".hamburger-btn");
@@ -139,7 +176,7 @@ window.addEventListener("scroll", function () {
 // Update scrollToWork function to close mobile menu
 function scrollToWork() {
   const viewportHeight = window.innerHeight;
-  const targetScroll = viewportHeight * 0.51; // 51vh (changed from 101vh)
+  const targetScroll = viewportHeight * 0.51; // 51vh
 
   // Close mobile menu if open
   const hamburger = document.querySelector(".hamburger-btn");

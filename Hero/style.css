@@ -275,6 +275,18 @@ body.work1-animate .work1-image-btn {
   transition: all 0.8s ease-out;
 }
 
+/* Add direct hover effect for logo button */
+.logo-btn:hover {
+  border-color: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.8),
+    0 0 30px rgba(255, 255, 255, 0.6), 0 0 45px rgba(255, 255, 255, 0.4);
+  transform: scale(1.1);
+}
+
+.logo-btn:hover .logo-img {
+  filter: brightness(1.2);
+}
+
 .logo-img {
   width: 100%;
   height: 100%;
@@ -283,7 +295,7 @@ body.work1-animate .work1-image-btn {
   transition: filter 0.8s ease-out;
 }
 
-/* Logo glow effects */
+/* Logo glow effects (scroll-based) */
 body.logo-glow .logo-btn {
   border-color: rgba(255, 255, 255, 0.8);
   box-shadow: 0 0 15px rgba(255, 255, 255, 0.8),
@@ -363,8 +375,18 @@ body.logo-peak-glow .logo-img {
   letter-spacing: 1px;
   text-transform: uppercase;
   transition: all 0.8s ease-out;
+  cursor: pointer; /* Add cursor pointer to indicate it's interactive */
 }
 
+/* Add direct hover effect */
+.studio-text:hover {
+  text-shadow: 0 0 15px rgba(0, 0, 0, 0.8), 0 0 30px rgba(0, 0, 0, 0.6),
+    0 0 45px rgba(0, 0, 0, 0.4);
+  color: rgba(0, 0, 0, 0.9);
+  transform: scale(1.1);
+}
+
+/* Keep your existing scroll-based glow effects */
 body.logo-glow .studio-text {
   text-shadow: 0 0 15px rgba(0, 0, 0, 0.8), 0 0 30px rgba(0, 0, 0, 0.6),
     0 0 45px rgba(0, 0, 0, 0.4);
@@ -376,7 +398,6 @@ body.logo-peak-glow .studio-text {
     0 0 60px rgba(0, 0, 0, 0.6), 0 0 80px rgba(0, 0, 0, 0.4);
   color: rgba(0, 0, 0, 1);
 }
-
 /* === MOBILE MENU === */
 .hamburger-btn {
   display: none;
@@ -818,6 +839,354 @@ body.work1-animate .work1-glow-background:hover {
 
   body.work1-animate .work1-image-btn:hover ~ .work1-glow-background,
   body.work1-animate .work1-glow-background:hover {
+    transform: translateY(-50%) scale(1.1) scaleX(0.25);
+  }
+}
+/* === WORK 1 SLIDE OUT ANIMATION WITH EXPANDING OVERLAY === */
+body.work1-slide-out .work1-image-btn {
+  left: -100%; /* Move completely off-screen to the left */
+  transform: translateY(-50%) scale(1.5);
+  transition: all 1s ease-in-out;
+  z-index: 20; /* Above the overlay */
+}
+
+body.work1-slide-out .work1-glow-background {
+  left: -100%; /* Move completely off-screen to the left */
+  transform: translateY(-50%) scale(1.5);
+  transition: all 1s ease-in-out;
+  z-index: 19; /* Below the image but above overlay */
+}
+
+/* White overlay that expands from current rectangle state to fill viewport */
+body.work1-expand-overlay .work {
+  width: 100vw; /* Full viewport width */
+  height: 100vh; /* Full viewport height */
+  left: 0; /* Start from left edge */
+  top: 0; /* Start from top */
+  transform: none; /* Remove previous transforms */
+  border-radius: 0; /* Remove rounded corners */
+  background-color: rgba(255, 255, 255, 0.95); /* Semi-transparent white */
+  z-index: 15; /* Below work1 elements but above everything else */
+  transition: all 1s ease-in-out;
+  /* Starts from the current rectangle state (already expanded from text-animate) */
+}
+
+/* Black line extends to full width during slide out */
+body.work1-expand-overlay .black-line {
+  width: 100vw; /* Full viewport width */
+  left: 0; /* Start from left edge */
+  height: 5px;
+  background-color: #1e1f1e;
+  transform: translateY(-50%);
+  z-index: 16; /* Above the white overlay */
+  transition: all 1s ease-in-out;
+}
+
+/* Mobile responsive for slide out */
+@media (max-width: 768px) {
+  body.work1-slide-out .work1-image-btn {
+    left: -100%;
+    transform: translateY(-50%) scale(1.2);
+  }
+
+  body.work1-slide-out .work1-glow-background {
+    left: -100%;
+    transform: translateY(-50%) scale(1.2) scaleX(0.25);
+  }
+
+  body.work1-expand-overlay .work {
+    height: 100vh;
+  }
+
+  body.work1-expand-overlay .black-line {
+    height: 3px;
+  }
+}
+
+@media (max-width: 480px) {
+  body.work1-slide-out .work1-image-btn {
+    left: -100%;
+    transform: translateY(-50%) scale(1.1);
+  }
+
+  body.work1-slide-out .work1-glow-background {
+    left: -100%;
+    transform: translateY(-50%) scale(1.1) scaleX(0.25);
+  }
+
+  body.work1-expand-overlay .work {
+    height: 100vh;
+  }
+
+  body.work1-expand-overlay .black-line {
+    height: 3px;
+  }
+}
+/* === WORK 2 IMAGE BUTTON === */
+.work2-image-btn {
+  position: fixed;
+  top: 50%;
+  left: 100%;
+  width: 300px;
+  height: 200px;
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  border-radius: 15px;
+  overflow: hidden;
+  transition: all 0.8s ease-out;
+  z-index: 3;
+  transform: translateY(-50%) scale(1);
+  text-decoration: none;
+  display: block;
+}
+
+.work2-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 13px;
+  transition: all 0.3s ease-out;
+}
+
+/* Hover effects */
+.work2-image-btn:hover {
+  transform: translateY(-50%) scale(1.2);
+  border-color: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.8), 0 0 30px rgba(0, 0, 0, 0.6),
+    0 0 45px rgba(0, 0, 0, 0.4);
+}
+
+/* === WORK 2 GLOW BACKGROUND === */
+.work2-glow-background {
+  position: fixed;
+  top: 50%;
+  left: 100%;
+  width: 150px;
+  height: 200px;
+  background: #0e0e0e;
+  border: none;
+  border-radius: 15px;
+  z-index: 2;
+  transform: translateY(-50%) scale(1);
+  transition: all 0.8s ease-out;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* Services content for desktop - ADD THIS */
+.work2-services-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+}
+
+.work2-services-header {
+  color: white;
+  font-family: "Anton", sans-serif;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 0 0 10px 0;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.9),
+    0 0 20px rgba(255, 255, 255, 0.7), 0 0 30px rgba(255, 255, 255, 0.5);
+  line-height: 1.2;
+}
+
+.work2-services-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+.work2-services-list li {
+  color: white;
+  font-family: "Anton", sans-serif;
+  font-size: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  line-height: 1.3;
+  margin-bottom: 4px;
+}
+
+/* Mobile text for work2 - hidden on desktop */
+.work2-mobile-text {
+  display: none;
+}
+
+/* Work 2 animations - POSITION F (right beside work1) */
+body.work2-animate .work2-image-btn {
+  top: 50%;
+  left: 50%; /* SAME AS WORK1 - CENTER POSITION */
+  transform: translate(-50%, -50%) scale(1.5); /* SAME AS WORK1 */
+  transition: all 0.8s ease-out;
+}
+
+body.work2-animate .work2-glow-background {
+  top: 50%;
+  left: 50%; /* SAME AS WORK1 - CENTER POSITION */
+  transform: translate(-50%, -50%) scale(1.5); /* SAME AS WORK1 */
+  transition: all 0.8s ease-out;
+}
+
+/* Desktop hover: Grey glow expanding to the right - FIXED */
+body.work2-animate .work2-image-btn:hover ~ .work2-glow-background,
+body.work2-animate .work2-glow-background:hover {
+  border: none;
+  box-shadow: 0 0 20px rgba(128, 128, 128, 0.8),
+    0 0 40px rgba(128, 128, 128, 0.6), 0 0 60px rgba(128, 128, 128, 0.4),
+    0 0 80px rgba(128, 128, 128, 0.2);
+  left: 70%; /* SAME AS WORK1 */
+  transform: translateY(-50%) scale(1.5); /* SAME AS WORK1 */
+}
+
+/* === WORK 2 SLIDE OUT ANIMATION === */
+body.work2-slide-out .work2-image-btn {
+  left: -100%;
+  transform: translateY(-50%) scale(1.5);
+  transition: all 1s ease-in-out;
+  z-index: 20;
+}
+
+body.work2-slide-out .work2-glow-background {
+  left: -100%;
+  transform: translateY(-50%) scale(1.5);
+  transition: all 1s ease-in-out;
+  z-index: 19;
+}
+
+/* === MOBILE RESPONSIVE FOR WORK2 === */
+@media (max-width: 768px) {
+  .work2-image-btn {
+    width: 250px;
+    height: 150px;
+    border-radius: 12px;
+  }
+
+  .work2-img {
+    border-radius: 10px;
+  }
+
+  .work2-glow-background {
+    width: 250px;
+    height: 150px;
+    border-radius: 25px;
+    left: 100%;
+    transform: translateY(-50%) scale(1) scaleX(0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+  }
+
+  /* Hide desktop content on mobile */
+  .work2-services-content {
+    display: none;
+  }
+
+  /* Show mobile text */
+  .work2-mobile-text {
+    display: block;
+    position: absolute;
+    color: white;
+    font-family: "Anton", sans-serif;
+    font-size: 20px;
+    font-weight: normal;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    transform: rotate(-90deg);
+    white-space: nowrap;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.9),
+      0 0 16px rgba(255, 255, 255, 0.7), 0 0 24px rgba(255, 255, 255, 0.5);
+    z-index: 3;
+    line-height: 1;
+  }
+
+  body.work2-animate .work2-image-btn {
+    left: 50%; /* SAME AS WORK1 - CENTER POSITION */
+    transform: translate(-50%, -50%) scale(1.2); /* SAME AS WORK1 */
+  }
+
+  body.work2-animate .work2-glow-background {
+    left: 50%; /* SAME AS WORK1 - CENTER POSITION */
+    transform: translate(-50%, -50%) scale(1.2) scaleX(0.25); /* SAME AS WORK1 */
+  }
+
+  /* Mobile hover during animation: Move right with grey glow - FIXED */
+  body.work2-animate .work2-image-btn:hover ~ .work2-glow-background,
+  body.work2-animate .work2-glow-background:hover {
+    left: 60%; /* SAME AS WORK1 */
+    transform: translateY(-50%) scale(1.2) scaleX(0.25); /* SAME AS WORK1 */
+    box-shadow: 0 0 15px rgba(128, 128, 128, 0.8),
+      0 0 30px rgba(128, 128, 128, 0.6), 0 0 45px rgba(128, 128, 128, 0.4),
+      0 0 60px rgba(128, 128, 128, 0.2);
+  }
+
+  body.work2-slide-out .work2-image-btn {
+    left: -100%;
+    transform: translateY(-50%) scale(1.2);
+  }
+
+  body.work2-slide-out .work2-glow-background {
+    left: -100%;
+    transform: translateY(-50%) scale(1.2) scaleX(0.25);
+  }
+}
+
+@media (max-width: 480px) {
+  .work2-image-btn {
+    width: 200px;
+    height: 120px;
+    border-radius: 10px;
+  }
+
+  .work2-img {
+    border-radius: 8px;
+  }
+
+  .work2-glow-background {
+    width: 200px;
+    height: 120px;
+    border-radius: 20px;
+  }
+
+  .work2-mobile-text {
+    font-size: 15.4px;
+    letter-spacing: 1px;
+  }
+
+  body.work2-animate .work2-image-btn {
+    left: 50%; /* SAME AS WORK1 - CENTER POSITION */
+    transform: translate(-50%, -50%) scale(1.1); /* SAME AS WORK1 */
+  }
+
+  body.work2-animate .work2-glow-background {
+    left: 50%; /* SAME AS WORK1 - CENTER POSITION */
+    transform: translate(-50%, -50%) scale(1.1) scaleX(0.25); /* SAME AS WORK1 */
+  }
+
+  body.work2-animate .work2-image-btn:hover ~ .work2-glow-background,
+  body.work2-animate .work2-glow-background:hover {
+    left: 60%; /* SAME AS WORK1 */
+    transform: translateY(-50%) scale(1.1) scaleX(0.25); /* SAME AS WORK1 */
+  }
+
+  body.work2-slide-out .work2-image-btn {
+    left: -100%;
+    transform: translateY(-50%) scale(1.1);
+  }
+
+  body.work2-slide-out .work2-glow-background {
+    left: -100%;
     transform: translateY(-50%) scale(1.1) scaleX(0.25);
   }
 }
