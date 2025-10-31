@@ -5,25 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>21 STUDIOS</title>
 
-    <!-- Google Font -->
+    <!-- External Resources -->
     <link
       href="https://fonts.googleapis.com/css2?family=Anton&display=swap"
       rel="stylesheet"
     />
-
-    <!-- Link to style.css -->
-    <link rel="stylesheet" href="Hero/style.css" />
-
-    <!-- gsap scrolltriggers -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.14.1/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.14.1/ScrollTrigger.min.js"></script>
 
-    <!-- link to script.js -->
-    <script src="Hero/script.js"></script>
+    <!-- Local Resources -->
+    <link rel="stylesheet" href="Hero/style.css" />
+    <script src="Hero/script.js" defer></script>
   </head>
 
   <body>
-    <!-- Work 1 Image Button -->
+    <!-- Work 1 Section -->
     <a
       href="work1/work1.html"
       class="work1-image-btn"
@@ -31,8 +27,6 @@
     >
       <img src="Hero/images/1.png" alt="Work 1" class="work1-img" />
     </a>
-
-    <!-- Work 1 glow background -->
     <div class="work1-glow-background">
       <div class="services-content">
         <h3 class="services-header">SERVICES OFFERED</h3>
@@ -46,7 +40,7 @@
       <div class="mobile-text">NEPAESTHETICS</div>
     </div>
 
-    <!-- Work 2 Image Button -->
+    <!-- Work 2 Section -->
     <a
       href="work2/work2.html"
       class="work2-image-btn"
@@ -54,10 +48,7 @@
     >
       <img src="work2/images/1.png" alt="Work 2" class="work2-img" />
     </a>
-
-    <!-- Work 2 glow background -->
     <div class="work2-glow-background">
-      <!-- ADD THIS CONTENT INSIDE THE EXISTING DIV -->
       <div class="work2-services-content">
         <h3 class="work2-services-header">SERVICES OFFERED</h3>
         <ul class="work2-services-list">
@@ -68,16 +59,14 @@
         </ul>
       </div>
       <div class="work2-mobile-text">WORK2</div>
-      <!-- END OF ADDED CONTENT -->
     </div>
-    <!-- Nav Bar -->
+
+    <!-- Navigation -->
     <nav class="taskbar">
-      <!-- Logo button - Far Left -->
       <button class="logo-btn" onclick="scrollToTop()">
-        <img src="Hero/images/2.png" alt="Logo" class="logo-img" />
+        <img src="Hero/images/2.png" alt="21 Studios Logo" class="logo-img" />
       </button>
 
-      <!-- Navigation buttons - Center -->
       <div class="nav-buttons">
         <button class="nav-btn" onclick="scrollToWork()">WORK</button>
         <button class="nav-btn">SERVICES</button>
@@ -87,14 +76,13 @@
           <span>WAITLIST</span>
         </button>
       </div>
-      <!-- Hamburger button - Center (Mobile) -->
+
       <button class="hamburger-btn" onclick="toggleMenu()">
         <span></span>
         <span></span>
         <span></span>
       </button>
 
-      <!-- Mobile menu dropdown -->
       <div class="mobile-menu">
         <button class="mobile-nav-btn" onclick="scrollToWork()">WORK</button>
         <button class="mobile-nav-btn">SERVICES</button>
@@ -105,10 +93,10 @@
         </button>
       </div>
 
-      <!-- Studio text - Far Right -->
       <div class="studio-text">21 STUDIOS</div>
     </nav>
 
+    <!-- Hero Section -->
     <main id="hero">
       <span class="build-text">BUILD</span>
       <h1 class="legacy-text">LEGACY</h1>
@@ -119,15 +107,11 @@
         </video>
       </div>
 
-      <div class="work">
-        <!-- optional content inside overlay -->
-      </div>
-
-      <!-- Black line - same as white line but different color -->
+      <div class="work"></div>
       <div class="black-line"></div>
     </main>
 
-    <!-- fake scroll section to allow scroll animations -->
+    <!-- Scroll Space for Animations -->
     <div class="scroll-space"></div>
   </body>
 </html>
