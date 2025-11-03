@@ -47,26 +47,41 @@ window.addEventListener("scroll", function () {
 
   // Work animations timeline
   if (scrollInVH >= 50 && scrollInVH < 100) {
-    // Work1 centered, Work2 hidden
+    // Work1 centered, Work2 & Work3 hidden
     document.body.classList.add("work1-animate");
     document.body.classList.remove(
       "work1-slide-out",
       "work1-expand-overlay",
       "work2-animate",
-      "work2-slide-out"
+      "work2-slide-out",
+      "work3-animate",
+      "work3-slide-out"
     );
-  } else if (scrollInVH >= 100 && scrollInVH < 175) {
-    // Work1 slides out, Work2 appears at position F
+  } else if (scrollInVH >= 100 && scrollInVH < 150) {
+    // Work1 slides out, Work2 appears at center
     document.body.classList.add(
       "work1-slide-out",
       "work1-expand-overlay",
       "work2-animate"
     );
-    document.body.classList.remove("work1-animate", "work2-slide-out");
-  } else if (scrollInVH >= 175) {
-    // Work2 slides out at 175vh
-    document.body.classList.add("work2-slide-out", "work1-expand-overlay");
-    document.body.classList.remove("work2-animate");
+    document.body.classList.remove(
+      "work1-animate",
+      "work2-slide-out",
+      "work3-animate",
+      "work3-slide-out"
+    );
+  } else if (scrollInVH >= 150 && scrollInVH < 200) {
+    // Work2 slides out, Work3 appears at center
+    document.body.classList.add(
+      "work2-slide-out",
+      "work1-expand-overlay",
+      "work3-animate"
+    );
+    document.body.classList.remove("work2-animate", "work3-slide-out");
+  } else if (scrollInVH >= 200) {
+    // Work3 slides out at 200vh
+    document.body.classList.add("work3-slide-out", "work1-expand-overlay");
+    document.body.classList.remove("work3-animate");
   } else {
     // Reset all work animations
     document.body.classList.remove(
@@ -74,7 +89,9 @@ window.addEventListener("scroll", function () {
       "work1-slide-out",
       "work1-expand-overlay",
       "work2-animate",
-      "work2-slide-out"
+      "work2-slide-out",
+      "work3-animate",
+      "work3-slide-out"
     );
   }
 });

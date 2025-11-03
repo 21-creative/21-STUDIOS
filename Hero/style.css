@@ -1190,3 +1190,272 @@ body.work2-slide-out .work2-glow-background {
     transform: translateY(-50%) scale(1.1) scaleX(0.25);
   }
 }
+
+/* === WORK 3 IMAGE BUTTON === */
+.work3-image-btn {
+  position: fixed;
+  top: 50%;
+  left: 100%;
+  width: 300px;
+  height: 200px;
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  border-radius: 15px;
+  overflow: hidden;
+  transition: all 0.8s ease-out;
+  z-index: 3;
+  transform: translateY(-50%) scale(1);
+  text-decoration: none;
+  display: block;
+}
+
+.work3-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 13px;
+  transition: all 0.3s ease-out;
+}
+
+/* Hover effects */
+.work3-image-btn:hover {
+  transform: translateY(-50%) scale(1.2);
+  border-color: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.8), 0 0 30px rgba(0, 0, 0, 0.6),
+    0 0 45px rgba(0, 0, 0, 0.4);
+}
+
+/* === WORK 3 GLOW BACKGROUND === */
+.work3-glow-background {
+  position: fixed;
+  top: 50%;
+  left: 100%;
+  width: 150px;
+  height: 200px;
+  background: #0e0e0e;
+  border: none;
+  border-radius: 15px;
+  z-index: 2;
+  transform: translateY(-50%) scale(1);
+  transition: all 0.8s ease-out;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* Services content for desktop */
+.work3-services-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+}
+
+.work3-services-header {
+  color: white;
+  font-family: "Anton", sans-serif;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 0 0 10px 0;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.9),
+    0 0 20px rgba(255, 255, 255, 0.7), 0 0 30px rgba(255, 255, 255, 0.5);
+  line-height: 1.2;
+}
+
+.work3-services-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+.work3-services-list li {
+  color: white;
+  font-family: "Anton", sans-serif;
+  font-size: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  line-height: 1.3;
+  margin-bottom: 4px;
+}
+
+/* Mobile text for work3 - hidden on desktop */
+.work3-mobile-text {
+  display: none;
+}
+
+/* Work 3 animations - SAME AS WORK1 & WORK2 */
+body.work3-animate .work3-image-btn {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1.5);
+  transition: all 0.8s ease-out;
+}
+
+body.work3-animate .work3-glow-background {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1.5);
+  transition: all 0.8s ease-out;
+}
+
+/* Desktop hover: Grey glow expanding to the right */
+body.work3-animate .work3-image-btn:hover ~ .work3-glow-background,
+body.work3-animate .work3-glow-background:hover {
+  border: none;
+  box-shadow: 0 0 20px rgba(128, 128, 128, 0.8),
+    0 0 40px rgba(128, 128, 128, 0.6), 0 0 60px rgba(128, 128, 128, 0.4),
+    0 0 80px rgba(128, 128, 128, 0.2);
+  left: 70%;
+  transform: translateY(-50%) scale(1.5);
+}
+
+/* === WORK 3 SLIDE OUT ANIMATION === */
+body.work3-slide-out .work3-image-btn {
+  left: -100%;
+  transform: translateY(-50%) scale(1.5);
+  transition: all 1s ease-in-out;
+  z-index: 20;
+}
+
+body.work3-slide-out .work3-glow-background {
+  left: -100%;
+  transform: translateY(-50%) scale(1.5);
+  transition: all 1s ease-in-out;
+  z-index: 19;
+}
+
+/* === MOBILE RESPONSIVE FOR WORK3 === */
+@media (max-width: 768px) {
+  .work3-image-btn {
+    width: 250px;
+    height: 150px;
+    border-radius: 12px;
+  }
+
+  .work3-img {
+    border-radius: 10px;
+  }
+
+  .work3-glow-background {
+    width: 250px;
+    height: 150px;
+    border-radius: 25px;
+    left: 100%;
+    transform: translateY(-50%) scale(1) scaleX(0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+  }
+
+  /* Hide desktop content on mobile */
+  .work3-services-content {
+    display: none;
+  }
+
+  /* Show mobile text */
+  .work3-mobile-text {
+    display: block;
+    position: absolute;
+    color: white;
+    font-family: "Anton", sans-serif;
+    font-size: 20px;
+    font-weight: normal;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    transform: rotate(-90deg);
+    white-space: nowrap;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.9),
+      0 0 16px rgba(255, 255, 255, 0.7), 0 0 24px rgba(255, 255, 255, 0.5);
+    z-index: 3;
+    line-height: 1;
+  }
+
+  body.work3-animate .work3-image-btn {
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1.2);
+  }
+
+  body.work3-animate .work3-glow-background {
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1.2) scaleX(0.25);
+  }
+
+  /* Mobile hover during animation: Move right with grey glow */
+  body.work3-animate .work3-image-btn:hover ~ .work3-glow-background,
+  body.work3-animate .work3-glow-background:hover {
+    left: 60%;
+    transform: translateY(-50%) scale(1.2) scaleX(0.25);
+    box-shadow: 0 0 15px rgba(128, 128, 128, 0.8),
+      0 0 30px rgba(128, 128, 128, 0.6), 0 0 45px rgba(128, 128, 128, 0.4),
+      0 0 60px rgba(128, 128, 128, 0.2);
+  }
+
+  body.work3-slide-out .work3-image-btn {
+    left: -100%;
+    transform: translateY(-50%) scale(1.2);
+  }
+
+  body.work3-slide-out .work3-glow-background {
+    left: -100%;
+    transform: translateY(-50%) scale(1.2) scaleX(0.25);
+  }
+}
+
+@media (max-width: 480px) {
+  .work3-image-btn {
+    width: 200px;
+    height: 120px;
+    border-radius: 10px;
+  }
+
+  .work3-img {
+    border-radius: 8px;
+  }
+
+  .work3-glow-background {
+    width: 200px;
+    height: 120px;
+    border-radius: 20px;
+  }
+
+  .work3-mobile-text {
+    font-size: 15.4px;
+    letter-spacing: 1px;
+  }
+
+  body.work3-animate .work3-image-btn {
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+
+  body.work3-animate .work3-glow-background {
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1.1) scaleX(0.25);
+  }
+
+  body.work3-animate .work3-image-btn:hover ~ .work3-glow-background,
+  body.work3-animate .work3-glow-background:hover {
+    left: 60%;
+    transform: translateY(-50%) scale(1.1) scaleX(0.25);
+  }
+
+  body.work3-slide-out .work3-image-btn {
+    left: -100%;
+    transform: translateY(-50%) scale(1.1);
+  }
+
+  body.work3-slide-out .work3-glow-background {
+    left: -100%;
+    transform: translateY(-50%) scale(1.1) scaleX(0.25);
+  }
+}
