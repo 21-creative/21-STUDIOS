@@ -104,3 +104,34 @@ setTimeout(() => {
     initWorkScroll();
   }
 }, 500);
+function injectWorkLine() {
+  let workContainer = document.getElementById("work-line-container");
+  if (!workContainer) {
+    workContainer = document.createElement("div");
+    workContainer.id = "work-line-container";
+    workContainer.style.position = "absolute";
+    workContainer.style.top = "0";
+    workContainer.style.left = "0";
+    workContainer.style.width = "100%";
+    workContainer.style.height = "100%";
+    workContainer.style.pointerEvents = "none";
+    workContainer.style.zIndex = "5";
+
+    const hero = document.getElementById("hero");
+    if (hero) {
+      hero.appendChild(workContainer);
+    }
+    console.log("✅ Work container created");
+  }
+
+  // Updated HTML with proper container structure
+  workContainer.innerHTML = `
+    <div class="work-container">
+      <div class="work"></div>
+    </div>
+  `;
+  console.log("✅ Work container with proper structure injected");
+
+  // Initialize coverflow after a short delay
+  setTimeout(initCoverflowInteractions, 100);
+}
