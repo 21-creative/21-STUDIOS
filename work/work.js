@@ -1,7 +1,3 @@
-// ============================================
-// WORK - OPTIMIZED SCROLL ANIMATIONS
-// ============================================
-
 function initWorkScroll() {
   console.log("🔄 Initializing work scroll animations");
 
@@ -9,7 +5,6 @@ function initWorkScroll() {
   let lastScrollInVH = 0;
 
   window.addEventListener("scroll", function () {
-    // Throttle scroll events
     if (scrollTimeout) return;
 
     scrollTimeout = setTimeout(() => {
@@ -17,10 +12,8 @@ function initWorkScroll() {
       const viewportHeight = window.innerHeight;
       const scrollInVH = (scrollY / viewportHeight) * 100;
 
-      // Don't cap at 200vh - we need to detect when scrolling back up
       const effectiveScroll = scrollInVH;
 
-      // Only update if scroll position changed significantly
       if (Math.abs(effectiveScroll - lastScrollInVH) < 0.5) {
         scrollTimeout = null;
         return;
@@ -30,27 +23,30 @@ function initWorkScroll() {
 
       console.log("📏 Scroll:", effectiveScroll.toFixed(1) + "vh");
 
-      // FIXED: Work line expand animation (50vh-175vh) and reverse (175vh-200vh)
+      // Work line animations with reverse + exit sequence (175vh-200vh)
       if (effectiveScroll > 50 && effectiveScroll <= 175) {
         // Expanding phase
         document.body.classList.add("work-expand");
+        document.body.classList.remove("work-exit");
         console.log("🔼 Adding work-expand");
       } else if (effectiveScroll > 175 && effectiveScroll <= 200) {
-        // Reverse animation phase - remove the class
+        // Reverse + Exit animation phase - both happen in sequence
         document.body.classList.remove("work-expand");
-        console.log("🔽 Removing work-expand (reverse animation)");
+        document.body.classList.add("work-exit");
+        console.log("🔽🚪 Reverse + Exit animation");
       } else if (effectiveScroll > 200) {
-        // Beyond 200vh - keep it collapsed
+        // Beyond 200vh - keep it exited
         document.body.classList.remove("work-expand");
-        console.log("🔽 Keeping work-expand removed");
+        document.body.classList.add("work-exit");
+        console.log("🚪 Keeping work-exit");
       } else {
-        // Below 50vh - collapsed
-        document.body.classList.remove("work-expand");
+        // Below 50vh - normal state
+        document.body.classList.remove("work-expand", "work-exit");
         document.body.classList.remove("body-no-scroll");
-        console.log("🔽 Removing work-expand");
+        console.log("🏠 Normal state");
       }
 
-      // Work line glow effects (0-50vh) - simplified logic
+      // Work line glow effects (0-50vh) - unchanged
       if (effectiveScroll > 0 && effectiveScroll <= 50) {
         document.body.classList.add("work-glow");
         if (effectiveScroll > 25) {
@@ -65,10 +61,9 @@ function initWorkScroll() {
       }
 
       scrollTimeout = null;
-    }, 16); // ~60fps
+    }, 16);
   });
 }
-
 function initCoverflowInteractions() {
   const coverflowItems = document.querySelectorAll(".coverflow-item");
 
