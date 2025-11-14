@@ -15,65 +15,27 @@
 
     <!-- Local Resources -->
     <link rel="stylesheet" href="Hero/style.css" />
+    <link rel="stylesheet" href="work/work.css" />
+    <link rel="stylesheet" href="taskbar/taskbar.css" />
+    <link rel="stylesheet" href="hero-text/hero-text.css" />
+    <link rel="stylesheet" href="circle/circle.css" />
+    <!-- ADD THIS LINE -->
+
     <script src="Hero/script.js" defer></script>
+    <script src="work/work.js" defer></script>
+    <script src="taskbar/taskbar.js" defer></script>
+    <script src="hero-text/hero-text.js" defer></script>
+    <script src="circle/circle.js" defer></script>
+    <!-- ADD THIS LINE -->
   </head>
 
   <body>
-    <!-- Navigation -->
-    <nav class="taskbar">
-      <button class="logo-btn" onclick="scrollToTop()">
-        <img src="Hero/images/2.png" alt="21 Studios Logo" class="logo-img" />
-      </button>
-
-      <div class="nav-buttons">
-        <button class="nav-btn" onclick="scrollToWork()">WORK</button>
-        <button class="nav-btn">SERVICES</button>
-        <button class="nav-btn">ABOUT US</button>
-        <button class="nav-btn waitlist-btn">
-          <span>JOIN <span></span>THE</span>
-          <span>WAITLIST</span>
-        </button>
-      </div>
-
-      <button class="hamburger-btn" onclick="toggleMenu()">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-
-      <div class="mobile-menu">
-        <button class="mobile-nav-btn" onclick="scrollToWork()">WORK</button>
-        <button class="mobile-nav-btn">SERVICES</button>
-        <button class="mobile-nav-btn">ABOUT US</button>
-        <button class="mobile-nav-btn mobile-waitlist-btn">
-          <span>JOIN THE</span>
-          <span>WAITLIST</span>
-        </button>
-      </div>
-
-      <div class="studio-text">21 STUDIOS</div>
-    </nav>
-
     <!-- Hero Section -->
     <main id="hero">
-      <span class="build-text">BUILD</span>
-      <h1 class="legacy-text">LEGACY</h1>
-
-      <div class="hero-circle">
-        <video autoplay muted loop playsinline class="circle-video">
-          <source src="Hero/videos/buttonbg.mp4" type="video/mp4" />
-        </video>
-      </div>
-
-      <div class="work"></div>
-      <div class="black-line"></div>
+      <!-- Circle will be injected here -->
     </main>
 
     <!-- Scroll Space for Animations -->
     <div class="scroll-space"></div>
-
-    <!-- ============================================ -->
-    <!-- WORK SECTIONS WILL BE ADDED HERE -->
-    <!-- ============================================ -->
   </body>
 </html>

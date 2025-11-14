@@ -1,0 +1,167 @@
+/* === HERO TEXT === */
+.build-text {
+  position: absolute;
+  top: 17%;
+  left: 43%;
+  transform: translateX(-50%);
+  font-size: 38vh;
+  line-height: 0.9;
+  background-image: linear-gradient(
+      rgba(255, 255, 255, 0.3),
+      rgba(255, 255, 255, 0.3)
+    ),
+    url("../Hero/images/bg.jpg");
+  background-size: cover;
+  background-position: center;
+  filter: grayscale(50%) brightness(120%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: transform 1s ease-in-out, opacity 1s ease-in-out;
+}
+
+.legacy-text {
+  position: absolute;
+  top: 26%;
+  left: 49.5%;
+  transform: translateX(-50%);
+  font-size: 38vh;
+  line-height: 0.9;
+  background-image: linear-gradient(
+      rgba(255, 255, 255, 0.3),
+      rgba(255, 255, 255, 0.3)
+    ),
+    url("../Hero/images/bg.jpg");
+  background-size: cover;
+  background-position: center;
+  filter: grayscale(50%) brightness(120%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: transform 1s ease-in-out, opacity 1s ease-in-out;
+}
+
+/* Text animations */
+body.text-animate .build-text {
+  transform: translateX(-50%) translateY(-100vh);
+  opacity: 0;
+}
+
+body.text-animate .legacy-text {
+  transform: translateX(-50%) translateY(100vh);
+  opacity: 0;
+}
+
+/* === RESPONSIVE SCALING === */
+
+/* Large tablets and small laptops */
+@media (max-width: 1200px) {
+  .build-text,
+  .legacy-text {
+    font-size: 32vh;
+  }
+}
+
+/* Tablets (768px and up) */
+@media (min-width: 768px) and (max-width: 992px) {
+  .build-text,
+  .legacy-text {
+    font-size: 28vh;
+  }
+
+  .build-text {
+    top: 17%;
+    left: 43%;
+  }
+
+  .legacy-text {
+    top: 26%;
+    left: 49.5%;
+  }
+}
+
+/* Large mobile devices */
+@media (max-width: 768px) {
+  .build-text,
+  .legacy-text {
+    font-size: 22vh;
+  }
+
+  .build-text {
+    top: 17%;
+    left: 43%;
+  }
+
+  .legacy-text {
+    top: 26%;
+    left: 49.5%;
+  }
+}
+
+/* Medium mobile devices */
+@media (max-width: 576px) {
+  .build-text,
+  .legacy-text {
+    font-size: 18vh;
+  }
+
+  .build-text {
+    top: 17%;
+    left: 43%;
+  }
+
+  .legacy-text {
+    top: 26%;
+    left: 49.5%;
+  }
+}
+
+/* Small mobile devices */
+@media (max-width: 480px) {
+  .build-text,
+  .legacy-text {
+    font-size: 15vh;
+  }
+
+  .build-text {
+    top: 17%;
+    left: 43%;
+  }
+
+  .legacy-text {
+    top: 26%;
+    left: 49.5%;
+  }
+}
+
+/* Extra small mobile devices */
+@media (max-width: 360px) {
+  .build-text,
+  .legacy-text {
+    font-size: 12vh;
+  }
+
+  .build-text {
+    top: 17%;
+    left: 43%;
+  }
+
+  .legacy-text {
+    top: 26%;
+    left: 49.5%;
+  }
+}
+
+/* Very large screens */
+@media (min-width: 1600px) {
+  .build-text,
+  .legacy-text {
+    font-size: 42vh;
+  }
+}
+
+/* Ultra-wide screens */
+@media (min-width: 2000px) {
+  .build-text,
+  .legacy-text {
+    font-size: 46vh;
+  }
+}

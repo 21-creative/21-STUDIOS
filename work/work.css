@@ -1,0 +1,64 @@
+/* === WORK LINE === */
+.work {
+  position: absolute;
+  top: 50%;
+  left: 10%;
+  width: 90%;
+  height: 5px;
+  background-color: rgba(255, 255, 255, 0.993);
+  border-radius: 2.5px;
+  z-index: 5;
+  transform: translateY(-50%) translateX(-150%);
+  animation: slideIn 1.5s ease-out forwards;
+  transition: all 1s ease-in-out;
+}
+
+@keyframes slideIn {
+  0% {
+    transform: translateY(-50%) translateX(-150%);
+  }
+  100% {
+    transform: translateY(-50%) translateX(0);
+  }
+}
+
+/* White line expands into rectangle */
+body.text-animate .work {
+  height: 80vh;
+  top: 50%;
+  transform: translateY(-50%);
+  border-radius: 15px;
+}
+
+/* Glow effects */
+body.scrolled .work {
+  background-color: rgb(253, 253, 253);
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.8),
+    0 0 30px rgba(255, 255, 255, 0.6), 0 0 45px rgba(255, 255, 255, 0.4);
+  transition: all 0.8s ease-out;
+}
+
+body.scrolled.peak-glow .work {
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 1), 0 0 40px rgba(255, 255, 255, 0.8),
+    0 0 60px rgba(255, 255, 255, 0.6), 0 0 80px rgba(255, 255, 255, 0.4);
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .work {
+    top: 46%;
+    height: 3px;
+    border-radius: 1.5px;
+  }
+
+  body.scrolled .work {
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8),
+      0 0 20px rgba(255, 255, 255, 0.6), 0 0 30px rgba(255, 255, 255, 0.4);
+  }
+
+  body.scrolled.peak-glow .work {
+    box-shadow: 0 0 15px rgba(255, 255, 255, 1),
+      0 0 30px rgba(255, 255, 255, 0.8), 0 0 45px rgba(255, 255, 255, 0.6);
+  }
+}

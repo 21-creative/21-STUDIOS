@@ -1,0 +1,353 @@
+/* === NAV BAR === */
+.taskbar {
+  position: fixed;
+  bottom: 75px;
+  left: 49%;
+  width: 50%;
+  transform: translateX(-50%) scale(0.8);
+  transform-origin: center bottom;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 30px;
+  padding: 20px 45px;
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: none;
+  z-index: 1000;
+  opacity: 0;
+  animation: fadeIn 1s ease forwards;
+  animation-delay: 0.4s;
+  min-height: 60px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+/* Logo button */
+.logo-btn {
+  width: 45px;
+  height: 45px;
+  background: white;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  transition: all 0.8s ease-out;
+}
+
+/* Add direct hover effect for logo button */
+.logo-btn:hover {
+  border-color: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.8),
+    0 0 30px rgba(255, 255, 255, 0.6), 0 0 45px rgba(255, 255, 255, 0.4);
+  transform: scale(1.1);
+}
+
+.logo-btn:hover .logo-img {
+  filter: brightness(1.2);
+}
+
+.logo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: brightness(1);
+  transition: filter 0.8s ease-out;
+}
+
+/* Logo glow effects (scroll-based) */
+body.logo-glow .logo-btn {
+  border-color: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.8),
+    0 0 30px rgba(255, 255, 255, 0.6), 0 0 45px rgba(255, 255, 255, 0.4);
+}
+
+body.logo-peak-glow .logo-btn {
+  border-color: rgba(255, 255, 255, 1);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 1), 0 0 40px rgba(255, 255, 255, 0.8),
+    0 0 60px rgba(255, 255, 255, 0.6), 0 0 80px rgba(255, 255, 255, 0.4);
+}
+
+body.logo-glow .logo-img {
+  filter: brightness(1.2);
+}
+
+body.logo-peak-glow .logo-img {
+  filter: brightness(1.5);
+}
+
+/* Navigation buttons */
+.nav-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  flex: 1;
+}
+
+.nav-btn {
+  font-family: "Anton", sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+  color: black;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 8px 12px;
+  transition: all 0.3s ease-out;
+  position: relative;
+}
+
+.waitlist-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1;
+  padding: 6px 12px;
+}
+
+.waitlist-btn span {
+  display: block;
+}
+
+.nav-btn:not(.waitlist-btn):hover {
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 0, 0, 0.6),
+    0 0 30px rgba(0, 0, 0, 0.4);
+  color: rgba(0, 0, 0, 0.9);
+  transform: translateY(-1px) scale(1.2);
+}
+
+.waitlist-btn:hover {
+  text-shadow: 0 0 10px rgba(255, 0, 0, 0.8), 0 0 20px rgba(255, 0, 0, 0.6),
+    0 0 30px rgba(255, 0, 0, 0.4);
+  color: rgba(255, 0, 0, 0.9);
+  transform: translateY(-1px) scale(1.2);
+}
+
+/* Studio text */
+.studio-text {
+  font-family: "Anton", sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  color: black;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: all 0.8s ease-out;
+  cursor: pointer; /* Add cursor pointer to indicate it's interactive */
+}
+
+/* Add direct hover effect */
+.studio-text:hover {
+  text-shadow: 0 0 15px rgba(0, 0, 0, 0.8), 0 0 30px rgba(0, 0, 0, 0.6),
+    0 0 45px rgba(0, 0, 0, 0.4);
+  color: rgba(0, 0, 0, 0.9);
+  transform: scale(1.1);
+}
+
+/* Keep your existing scroll-based glow effects */
+body.logo-glow .studio-text {
+  text-shadow: 0 0 15px rgba(0, 0, 0, 0.8), 0 0 30px rgba(0, 0, 0, 0.6),
+    0 0 45px rgba(0, 0, 0, 0.4);
+  color: rgba(0, 0, 0, 0.9);
+}
+
+body.logo-peak-glow .studio-text {
+  text-shadow: 0 0 20px rgba(0, 0, 0, 1), 0 0 40px rgba(0, 0, 0, 0.8),
+    0 0 60px rgba(0, 0, 0, 0.6), 0 0 80px rgba(0, 0, 0, 0.4);
+  color: rgba(0, 0, 0, 1);
+}
+
+/* === MOBILE MENU === */
+.hamburger-btn {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 45px;
+  height: 45px;
+  background: white;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  cursor: pointer;
+  padding: 8px;
+  gap: 4px;
+  transition: all 0.3s ease-out;
+}
+
+.hamburger-btn span {
+  width: 100%;
+  height: 3px;
+  background: black;
+  border-radius: 2px;
+  transition: all 0.3s ease-out;
+}
+
+.hamburger-btn.active span:nth-child(1) {
+  transform: rotate(45deg) translate(6px, 6px);
+}
+
+.hamburger-btn.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger-btn.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(6px, -6px);
+}
+
+/* Mobile menu dropdown */
+.mobile-menu {
+  position: absolute;
+  bottom: 100%;
+  left: 47%;
+  transform: translateX(-50%) scaleY(0);
+  transform-origin: bottom;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border-radius: 12px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 160px;
+  max-width: 180px;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease-out;
+  z-index: 1001;
+  border: none;
+}
+
+.mobile-nav-btn {
+  font-family: "Anton", sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+  color: black;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 10px 15px;
+  border-radius: 6px;
+  transition: all 0.3s ease-out;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.mobile-waitlist-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1;
+}
+
+.mobile-waitlist-btn span {
+  display: block;
+  font-size: 12px;
+}
+
+.mobile-nav-btn:hover {
+  background: rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.mobile-waitlist-btn:hover {
+  background: rgba(255, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.mobile-menu.active {
+  transform: translateX(-50%) scaleY(1);
+  opacity: 1;
+  visibility: visible;
+}
+
+/* === RESPONSIVE DESIGN === */
+@media (max-width: 768px) {
+  /* Taskbar */
+  .taskbar {
+    width: 85%;
+    padding: 12px 20px;
+    min-height: 45px;
+    gap: 15px;
+    justify-content: space-between;
+  }
+
+  .nav-buttons {
+    display: none;
+  }
+
+  .hamburger-btn {
+    display: flex;
+    width: 40px;
+    height: 40px;
+  }
+
+  .logo-btn {
+    width: 40px;
+    height: 40px;
+  }
+
+  .studio-text {
+    font-size: 16px;
+    white-space: nowrap;
+  }
+
+  .taskbar > * {
+    flex: 0 0 auto;
+  }
+
+  .mobile-menu {
+    min-width: 140px;
+    max-width: 160px;
+    left: 47%;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Taskbar */
+  .taskbar {
+    width: 90%;
+    padding: 10px 15px;
+    min-height: 40px;
+    gap: 10px;
+  }
+
+  .hamburger-btn,
+  .logo-btn {
+    width: 35px;
+    height: 35px;
+  }
+
+  .studio-text {
+    font-size: 14px;
+  }
+
+  .mobile-menu {
+    min-width: 130px;
+    max-width: 150px;
+    left: 47%;
+  }
+
+  .mobile-nav-btn {
+    font-size: 13px;
+    padding: 8px 12px;
+  }
+
+  .mobile-waitlist-btn span {
+    font-size: 11px;
+  }
+}

@@ -1,0 +1,120 @@
+/* === HERO CIRCLE === */
+.hero-circle {
+  position: absolute;
+  top: 35%;
+  left: 69%;
+  transform: translate(-50%, -50%) translateY(-100vh);
+  width: clamp(60px, 10vw, 120px);
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: rgba(255, 255, 255, 0.2);
+  z-index: 1;
+  animation: fallIn 1s ease-out forwards, bounce 1.5s infinite 1s;
+  transition: transform 1s ease-in-out, opacity 1s ease-in-out;
+}
+
+.circle-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Circle animations */
+@keyframes fallIn {
+  0% {
+    transform: translate(-50%, -50%) translateY(-100vh);
+  }
+  60% {
+    transform: translate(-50%, -50%) translateY(10%);
+  }
+  100% {
+    transform: translate(-50%, -50%) translateY(0);
+  }
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translate(-50%, -50%) translateY(0);
+  }
+  50% {
+    transform: translate(-50%, -50%) translateY(-10%);
+  }
+}
+
+/* Circle animation for desktop */
+@media (min-width: 769px) {
+  body.text-animate .hero-circle {
+    transform: translate(-50%, -50%) translateY(-100vh);
+    opacity: 0;
+  }
+}
+
+/* Hide circle on mobile devices (less than 768px) */
+@media (max-width: 767px) {
+  .hero-circle {
+    display: none;
+  }
+}
+
+/* Responsive scaling for circle */
+@media (max-width: 1200px) {
+  .hero-circle {
+    width: clamp(55px, 9vw, 110px);
+  }
+}
+
+@media (min-width: 768px) and (max-width: 992px) {
+  .hero-circle {
+    top: 35%;
+    left: 69%;
+    width: clamp(50px, 8vw, 100px);
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-circle {
+    top: 35%;
+    left: 69%;
+    width: clamp(45px, 7vw, 90px);
+  }
+}
+
+@media (max-width: 576px) {
+  .hero-circle {
+    top: 35%;
+    left: 69%;
+    width: clamp(40px, 6vw, 80px);
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-circle {
+    top: 35%;
+    left: 69%;
+    width: clamp(35px, 5vw, 70px);
+  }
+}
+
+@media (max-width: 360px) {
+  .hero-circle {
+    top: 35%;
+    left: 69%;
+    width: clamp(30px, 4vw, 60px);
+  }
+}
+
+@media (min-width: 1600px) {
+  .hero-circle {
+    width: clamp(70px, 12vw, 140px);
+  }
+}
+
+@media (min-width: 2000px) {
+  .hero-circle {
+    width: clamp(80px, 14vw, 160px);
+  }
+}
