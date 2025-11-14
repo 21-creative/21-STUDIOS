@@ -9,8 +9,9 @@
   animation: slideIn 1.5s ease-out forwards;
   transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   z-index: 5;
-  overflow: hidden; /* This prevents spillage */
+  overflow: hidden; /* This prevents spillage when collapsed */
   border-radius: 2.5px;
+  pointer-events: none; /* Important: prevent interaction when collapsed */
 }
 
 /* Move the background and effects to the container */
@@ -32,6 +33,9 @@
   background: rgba(10, 10, 10, 0.95);
   backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.1);
+  overflow-y: auto; /* Enable vertical scrolling */
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+  pointer-events: auto; /* Important: enable interaction when expanded */
 }
 
 /* Update work line inside expanded container */
@@ -51,6 +55,87 @@
   background-color: rgb(255, 255, 255);
   box-shadow: 0 0 20px rgba(255, 255, 255, 1), 0 0 40px rgba(255, 255, 255, 0.8),
     0 0 60px rgba(255, 255, 255, 0.6), 0 0 80px rgba(255, 255, 255, 0.4);
+}
+
+/* === WORK COLLAGE === */
+.work-collage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 300vh; /* Total collage height */
+  padding: 20px;
+  box-sizing: border-box;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none; /* Prevent interaction when hidden */
+}
+
+.work-expand .work-collage {
+  opacity: 1;
+  pointer-events: auto; /* Enable interaction when visible */
+}
+
+/* Individual collage items */
+.collage-item {
+  position: absolute;
+  width: 80%;
+  left: 10%;
+  height: 200px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  overflow: hidden;
+  transition: all 0.3s ease;
+  margin: 0;
+}
+
+.collage-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.collage-item:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.4);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.collage-item:hover img {
+  transform: scale(1.05);
+}
+
+/* Custom scrollbar for the work container */
+.work-expand .work-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.work-expand .work-container::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+}
+
+.work-expand .work-container::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 3px;
+}
+
+.work-expand .work-container::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+/* Firefox scrollbar */
+.work-expand .work-container {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.3) rgba(255, 255, 255, 0.1);
+}
+
+/* When work container is being scrolled, prevent body scroll */
+.body-no-scroll {
+  overflow: hidden !important;
 }
 
 /* Mobile responsive */
@@ -73,5 +158,25 @@
   .work-peak-glow .work-container {
     box-shadow: 0 0 15px rgba(255, 255, 255, 1),
       0 0 30px rgba(255, 255, 255, 0.8), 0 0 45px rgba(255, 255, 255, 0.6);
+  }
+
+  .work-collage {
+    padding: 15px;
+  }
+
+  .collage-item {
+    width: 90%;
+    left: 5%;
+    height: 150px;
+  }
+}
+
+/* Make sure these keyframes exist */
+@keyframes slideIn {
+  0% {
+    transform: translateY(-50%) translateX(-150%);
+  }
+  100% {
+    transform: translateY(-50%) translateX(0);
   }
 }
