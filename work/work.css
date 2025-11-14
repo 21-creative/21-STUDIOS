@@ -9,9 +9,13 @@
   animation: slideIn 1.5s ease-out forwards;
   transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   z-index: 5;
-  overflow: hidden; /* This prevents spillage when collapsed */
+  overflow: hidden;
   border-radius: 2.5px;
-  pointer-events: none; /* Important: prevent interaction when collapsed */
+  pointer-events: none;
+  will-change: transform, height, border-radius;
+  background: transparent;
+  border: 1px solid transparent;
+  backdrop-filter: blur(0px);
 }
 
 /* Move the background and effects to the container */
@@ -20,6 +24,7 @@
   height: 100%;
   background-color: rgba(255, 255, 255, 0.993);
   border-radius: inherit;
+  transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 /* === SCROLL ANIMATIONS - UPDATED FOR CONTAINER === */
@@ -33,15 +38,17 @@
   background: rgba(10, 10, 10, 0.95);
   backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  overflow-y: auto; /* Enable vertical scrolling */
-  overflow-x: hidden; /* Prevent horizontal scrolling */
-  pointer-events: auto; /* Important: enable interaction when expanded */
+  overflow-y: auto;
+  overflow-x: hidden;
+  pointer-events: auto;
+  transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 /* Update work line inside expanded container */
 .work-expand .work-container .work {
-  background: transparent; /* Let container handle background */
+  background: transparent;
   box-shadow: none;
+  transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 /* Glow effects on container */
@@ -49,12 +56,14 @@
   background-color: rgb(253, 253, 253);
   box-shadow: 0 0 15px rgba(255, 255, 255, 0.8),
     0 0 30px rgba(255, 255, 255, 0.6), 0 0 45px rgba(255, 255, 255, 0.4);
+  transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .work-peak-glow .work-container {
   background-color: rgb(255, 255, 255);
   box-shadow: 0 0 20px rgba(255, 255, 255, 1), 0 0 40px rgba(255, 255, 255, 0.8),
     0 0 60px rgba(255, 255, 255, 0.6), 0 0 80px rgba(255, 255, 255, 0.4);
+  transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 /* === WORK COLLAGE === */
@@ -63,17 +72,17 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 300vh; /* Total collage height */
+  height: 300vh;
   padding: 20px;
   box-sizing: border-box;
   opacity: 0;
-  transition: opacity 0.5s ease;
-  pointer-events: none; /* Prevent interaction when hidden */
+  transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  pointer-events: none;
 }
 
 .work-expand .work-collage {
   opacity: 1;
-  pointer-events: auto; /* Enable interaction when visible */
+  pointer-events: auto;
 }
 
 /* Individual collage items */
@@ -144,10 +153,15 @@
     top: 46%;
     height: 3px;
     border-radius: 1.5px;
+    will-change: transform, height, border-radius;
+    background: transparent;
+    border: 1px solid transparent;
+    backdrop-filter: blur(0px);
   }
 
   .work-expand .work-container {
     height: 60vh;
+    transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
 
   .work-glow .work-container {
@@ -162,6 +176,7 @@
 
   .work-collage {
     padding: 15px;
+    transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
 
   .collage-item {

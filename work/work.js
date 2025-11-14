@@ -17,33 +17,48 @@ function initWorkScroll() {
       const viewportHeight = window.innerHeight;
       const scrollInVH = (scrollY / viewportHeight) * 100;
 
+      // Don't cap at 200vh - we need to detect when scrolling back up
+      const effectiveScroll = scrollInVH;
+
       // Only update if scroll position changed significantly
-      if (Math.abs(scrollInVH - lastScrollInVH) < 0.5) {
+      if (Math.abs(effectiveScroll - lastScrollInVH) < 0.5) {
         scrollTimeout = null;
         return;
       }
 
-      lastScrollInVH = scrollInVH;
+      lastScrollInVH = effectiveScroll;
 
-      // Work line expand animation (50vh-175vh)
-      if (scrollInVH > 50 && scrollInVH <= 175) {
+      console.log("📏 Scroll:", effectiveScroll.toFixed(1) + "vh");
+
+      // FIXED: Work line expand animation (50vh-175vh) and reverse (175vh-200vh)
+      if (effectiveScroll > 50 && effectiveScroll <= 175) {
+        // Expanding phase
         document.body.classList.add("work-expand");
-      } else if (scrollInVH > 175) {
-        document.body.classList.add("work-expand");
+        console.log("🔼 Adding work-expand");
+      } else if (effectiveScroll > 175 && effectiveScroll <= 200) {
+        // Reverse animation phase - remove the class
+        document.body.classList.remove("work-expand");
+        console.log("🔽 Removing work-expand (reverse animation)");
+      } else if (effectiveScroll > 200) {
+        // Beyond 200vh - keep it collapsed
+        document.body.classList.remove("work-expand");
+        console.log("🔽 Keeping work-expand removed");
       } else {
+        // Below 50vh - collapsed
         document.body.classList.remove("work-expand");
         document.body.classList.remove("body-no-scroll");
+        console.log("🔽 Removing work-expand");
       }
 
       // Work line glow effects (0-50vh) - simplified logic
-      if (scrollInVH > 0 && scrollInVH <= 50) {
+      if (effectiveScroll > 0 && effectiveScroll <= 50) {
         document.body.classList.add("work-glow");
-        if (scrollInVH > 25) {
+        if (effectiveScroll > 25) {
           document.body.classList.add("work-peak-glow");
         } else {
           document.body.classList.remove("work-peak-glow");
         }
-      } else if (scrollInVH > 50) {
+      } else if (effectiveScroll > 50) {
         document.body.classList.add("work-glow", "work-peak-glow");
       } else {
         document.body.classList.remove("work-glow", "work-peak-glow");
