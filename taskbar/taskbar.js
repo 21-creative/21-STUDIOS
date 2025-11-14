@@ -3,7 +3,9 @@
 // ============================================
 
 let lastScrollY = window.scrollY;
+let lastWorkScroll = 0;
 let ticking = false;
+let isScrollingWorkSection = false;
 
 function updateTaskbar() {
   const taskbar = document.querySelector(".taskbar");
@@ -11,7 +13,42 @@ function updateTaskbar() {
   const viewportHeight = window.innerHeight;
   const scrollInVH = (currentScrollY / viewportHeight) * 100;
 
-  // Taskbar hide/show logic
+  // Check if we're scrolling inside work section
+  const workContainer = document.querySelector(".work-container");
+  const isWorkExpanded = document.body.classList.contains("work-expand");
+
+  if (isWorkExpanded && workContainer) {
+    const workScrollTop = workContainer.scrollTop;
+    const workScrollHeight =
+      workContainer.scrollHeight - workContainer.clientHeight;
+
+    // If work container has scroll position and we're not at the very start
+    if (workScrollTop > 0 || (workScrollTop === 0 && lastWorkScroll > 0)) {
+      isScrollingWorkSection = true;
+
+      // Taskbar behavior for work section scrolling
+      if (workScrollTop > lastWorkScroll) {
+        // Scrolling down in work section - hide taskbar
+        taskbar.style.transform =
+          "translateX(-50%) scale(0.8) translateY(200px)";
+        taskbar.style.opacity = "0";
+      } else {
+        // Scrolling up in work section - show taskbar
+        taskbar.style.transform = "translateX(-50%) scale(0.8) translateY(0)";
+        taskbar.style.opacity = "1";
+      }
+
+      lastWorkScroll = workScrollTop;
+      lastScrollY = currentScrollY;
+      ticking = false;
+      return;
+    }
+  }
+
+  // If we get here, we're scrolling the main page
+  isScrollingWorkSection = false;
+
+  // Original taskbar hide/show logic for main page scrolling
   if (scrollInVH > 50) {
     if (currentScrollY > lastScrollY) {
       // Scrolling down - hide taskbar
@@ -39,6 +76,21 @@ function onScroll() {
   }
 }
 
+// Add work container scroll listener
+function initWorkContainerScroll() {
+  const workContainer = document.querySelector(".work-container");
+  if (workContainer) {
+    workContainer.addEventListener("scroll", function () {
+      if (document.body.classList.contains("work-expand")) {
+        if (!ticking) {
+          requestAnimationFrame(updateTaskbar);
+          ticking = true;
+        }
+      }
+    });
+  }
+}
+
 function initTaskbarScroll() {
   console.log("✅ Taskbar scroll initialized!");
 
@@ -46,6 +98,9 @@ function initTaskbarScroll() {
   lastScrollY = window.scrollY;
 
   window.addEventListener("scroll", onScroll);
+
+  // Initialize work container scroll listener
+  setTimeout(initWorkContainerScroll, 100);
 }
 
 function injectTaskbar() {
@@ -134,8 +189,8 @@ document.addEventListener("click", function (event) {
   }
 });
 
-// Close menu when scrolling
-window.addEventListener("scroll", function () {
+// Close menu when scrolling (both main page and work section)
+function closeMenuOnScroll() {
   const hamburger = document.querySelector(".hamburger-btn");
   const mobileMenu = document.querySelector(".mobile-menu");
 
@@ -143,13 +198,24 @@ window.addEventListener("scroll", function () {
     hamburger.classList.remove("active");
     mobileMenu.classList.remove("active");
   }
-});
+}
+
+window.addEventListener("scroll", closeMenuOnScroll);
+
+// Also listen for work container scroll to close menu
+function initWorkMenuClose() {
+  const workContainer = document.querySelector(".work-container");
+  if (workContainer) {
+    workContainer.addEventListener("scroll", closeMenuOnScroll);
+  }
+}
 
 // Initialize when DOM is loaded
 document.addEventListener("DOMContentLoaded", function () {
   console.log("🚀 DOM loaded - initializing taskbar");
   injectTaskbar();
   initTaskbarScroll();
+  setTimeout(initWorkMenuClose, 100);
 });
 
 // Also initialize if DOM is already loaded
@@ -161,5 +227,6 @@ if (
   setTimeout(() => {
     injectTaskbar();
     initTaskbarScroll();
+    initWorkMenuClose();
   }, 100);
 }
