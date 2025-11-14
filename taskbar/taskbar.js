@@ -122,7 +122,7 @@ function injectTaskbar() {
 
       <div class="nav-buttons">
         <button class="nav-btn" onclick="scrollToWork()">WORK</button>
-        <button class="nav-btn">SERVICES</button>
+        <button class="nav-btn" onclick="scrollToServices()">SERVICES</button>
         <button class="nav-btn">ABOUT US</button>
         <button class="nav-btn waitlist-btn">
           <span>JOIN <span></span>THE</span>
@@ -138,7 +138,7 @@ function injectTaskbar() {
 
       <div class="mobile-menu">
         <button class="mobile-nav-btn" onclick="scrollToWork()">WORK</button>
-        <button class="mobile-nav-btn">SERVICES</button>
+        <button class="mobile-nav-btn" onclick="scrollToServices()">SERVICES</button>
         <button class="mobile-nav-btn">ABOUT US</button>
         <button class="mobile-nav-btn mobile-waitlist-btn">
           <span>JOIN THE</span>
@@ -171,6 +171,12 @@ window.toggleMenu = function () {
     hamburger.classList.toggle("active");
     mobileMenu.classList.toggle("active");
   }
+};
+// Add this function with your other global functions
+window.scrollToServices = function () {
+  const viewportHeight = window.innerHeight;
+  const targetScroll = viewportHeight * 2; // 200vh - where services start
+  window.scrollTo({ top: targetScroll, behavior: "smooth" });
 };
 
 // Close menu when clicking outside
