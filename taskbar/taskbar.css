@@ -1,4 +1,4 @@
-/* === NAV BAR === */
+/* === TASKBAR === */
 .taskbar {
   position: fixed;
   bottom: 75px;
@@ -66,23 +66,23 @@
 }
 
 /* Logo glow effects (scroll-based) */
-body.logo-glow .logo-btn {
+body.work-glow .logo-btn {
   border-color: rgba(255, 255, 255, 0.8);
   box-shadow: 0 0 15px rgba(255, 255, 255, 0.8),
     0 0 30px rgba(255, 255, 255, 0.6), 0 0 45px rgba(255, 255, 255, 0.4);
 }
 
-body.logo-peak-glow .logo-btn {
+body.work-peak-glow .logo-btn {
   border-color: rgba(255, 255, 255, 1);
   box-shadow: 0 0 20px rgba(255, 255, 255, 1), 0 0 40px rgba(255, 255, 255, 0.8),
     0 0 60px rgba(255, 255, 255, 0.6), 0 0 80px rgba(255, 255, 255, 0.4);
 }
 
-body.logo-glow .logo-img {
+body.work-glow .logo-img {
   filter: brightness(1.2);
 }
 
-body.logo-peak-glow .logo-img {
+body.work-peak-glow .logo-img {
   filter: brightness(1.5);
 }
 
@@ -145,7 +145,7 @@ body.logo-peak-glow .logo-img {
   letter-spacing: 1px;
   text-transform: uppercase;
   transition: all 0.8s ease-out;
-  cursor: pointer; /* Add cursor pointer to indicate it's interactive */
+  cursor: pointer;
 }
 
 /* Add direct hover effect */
@@ -156,14 +156,14 @@ body.logo-peak-glow .logo-img {
   transform: scale(1.1);
 }
 
-/* Keep your existing scroll-based glow effects */
-body.logo-glow .studio-text {
+/* Studio text scroll-based glow effects */
+body.work-glow .studio-text {
   text-shadow: 0 0 15px rgba(0, 0, 0, 0.8), 0 0 30px rgba(0, 0, 0, 0.6),
     0 0 45px rgba(0, 0, 0, 0.4);
   color: rgba(0, 0, 0, 0.9);
 }
 
-body.logo-peak-glow .studio-text {
+body.work-peak-glow .studio-text {
   text-shadow: 0 0 20px rgba(0, 0, 0, 1), 0 0 40px rgba(0, 0, 0, 0.8),
     0 0 60px rgba(0, 0, 0, 0.6), 0 0 80px rgba(0, 0, 0, 0.4);
   color: rgba(0, 0, 0, 1);

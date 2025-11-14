@@ -1,0 +1,204 @@
+/* === LOADING SCREEN === */
+.loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #0e0e0e;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  opacity: 1;
+  /* DISABLE SCROLLING */
+  overflow: hidden;
+  touch-action: none;
+  -webkit-overflow-scrolling: none;
+}
+
+/* Prevent body scroll when loading screen is active */
+body.loading-active {
+  overflow: hidden;
+  height: 100vh;
+}
+
+.loading-screen.fade-out {
+  animation: screenFadeOut 2s ease-in-out forwards;
+}
+
+@keyframes screenFadeOut {
+  0% {
+    background-color: #0e0e0e;
+    opacity: 1;
+  }
+  50% {
+    background-color: #000000;
+    opacity: 1;
+  }
+  100% {
+    background-color: #000000;
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+.loading-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Circular Progress Container */
+.logo-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.circular-progress {
+  position: relative;
+  width: 140px;
+  height: 140px;
+}
+
+/* Progress Circle */
+.progress-circle {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  position: relative;
+  background: conic-gradient(#ffffff 0deg, transparent 0deg);
+  animation: progressFill 3s linear forwards;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.3),
+    0 0 40px rgba(255, 255, 255, 0.2), 0 0 60px rgba(255, 255, 255, 0.1);
+  mask: radial-gradient(circle, transparent 50%, #000 51%);
+}
+
+.progress-fill {
+  position: absolute;
+  width: 94%;
+  height: 94%;
+  background-color: #0e0e0e;
+  border-radius: 50%;
+  top: 3%;
+  left: 3%;
+  z-index: 1;
+}
+
+@keyframes progressFill {
+  0% {
+    background: conic-gradient(#ffffff 0deg, transparent 0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    background: conic-gradient(#ffffff 360deg, transparent 360deg);
+    transform: rotate(360deg);
+  }
+}
+
+/* Logo Center */
+.logo-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70px;
+  height: 70px;
+  background: #0e0e0e;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.4),
+    0 0 30px rgba(255, 255, 255, 0.2), inset 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+.loading-logo {
+  width: 50px;
+  height: 50px;
+  filter: brightness(0) invert(1);
+  animation: logoPulse 2s ease-in-out infinite;
+}
+
+@keyframes logoPulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+}
+
+/* Neon Glow Effects */
+.circular-progress::before {
+  content: "";
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  border-radius: 50%;
+  background: linear-gradient(
+    45deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  animation: neonGlow 3s ease-in-out infinite;
+  z-index: -1;
+}
+
+@keyframes neonGlow {
+  0%,
+  100% {
+    opacity: 0.5;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3),
+      0 0 20px rgba(255, 255, 255, 0.2);
+  }
+  50% {
+    opacity: 1;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.6),
+      0 0 40px rgba(255, 255, 255, 0.4), 0 0 60px rgba(255, 255, 255, 0.2);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .circular-progress {
+    width: 120px;
+    height: 120px;
+  }
+
+  .logo-center {
+    width: 60px;
+    height: 60px;
+  }
+
+  .loading-logo {
+    width: 45px;
+    height: 45px;
+  }
+}
+
+@media (max-width: 480px) {
+  .circular-progress {
+    width: 100px;
+    height: 100px;
+  }
+
+  .logo-center {
+    width: 50px;
+    height: 50px;
+  }
+
+  .loading-logo {
+    width: 40px;
+    height: 40px;
+  }
+}

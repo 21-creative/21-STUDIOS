@@ -39,17 +39,19 @@
   transition: transform 1s ease-in-out, opacity 1s ease-in-out;
 }
 
-/* Text animations */
-body.text-animate .build-text {
+/* Hero Text Scroll Animations */
+.hero-text-animate .build-text {
   transform: translateX(-50%) translateY(-100vh);
   opacity: 0;
 }
 
-body.text-animate .legacy-text {
+.hero-text-animate .legacy-text {
   transform: translateX(-50%) translateY(100vh);
   opacity: 0;
 }
 
+/* === RESPONSIVE SCALING === */
+/* ... (keep all your existing responsive code) ... */
 /* === RESPONSIVE SCALING === */
 
 /* Large tablets and small laptops */

@@ -1,4 +1,7 @@
-// ===== TASKBAR HIDE/SHOW ON SCROLL =====
+// ============================================
+// TASKBAR FUNCTIONALITY
+// ============================================
+
 let lastScrollY = window.scrollY;
 let ticking = false;
 
@@ -8,10 +11,10 @@ function updateTaskbar() {
   const viewportHeight = window.innerHeight;
   const scrollInVH = (currentScrollY / viewportHeight) * 100;
 
-  // Only activate navbar hide/show after 50vh
+  // Taskbar hide/show logic
   if (scrollInVH > 50) {
     if (currentScrollY > lastScrollY) {
-      // Scrolling down - hide taskbar completely off screen
+      // Scrolling down - hide taskbar
       taskbar.style.transform = "translateX(-50%) scale(0.8) translateY(200px)";
       taskbar.style.opacity = "0";
     } else {
@@ -36,93 +39,26 @@ function onScroll() {
   }
 }
 
-window.addEventListener("scroll", onScroll);
+function initTaskbarScroll() {
+  console.log("✅ Taskbar scroll initialized!");
 
-// ===== SCROLL TO TOP FUNCTION =====
-function scrollToTop() {
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth",
-  });
+  // Initialize lastScrollY
+  lastScrollY = window.scrollY;
+
+  window.addEventListener("scroll", onScroll);
 }
 
-// ===== SCROLL TO WORK FUNCTION =====
-function scrollToWork() {
-  const viewportHeight = window.innerHeight;
-  const targetScroll = viewportHeight * 0.51; // 51vh
-
-  // Close mobile menu if open
-  const hamburger = document.querySelector(".hamburger-btn");
-  const mobileMenu = document.querySelector(".mobile-menu");
-  if (hamburger && mobileMenu) {
-    hamburger.classList.remove("active");
-    mobileMenu.classList.remove("active");
-  }
-
-  window.scrollTo({
-    top: targetScroll,
-    behavior: "smooth",
-  });
-}
-
-// ===== MOBILE MENU TOGGLE =====
-function toggleMenu() {
-  const hamburger = document.querySelector(".hamburger-btn");
-  const mobileMenu = document.querySelector(".mobile-menu");
-
-  hamburger.classList.toggle("active");
-  mobileMenu.classList.toggle("active");
-}
-
-// Close menu when clicking outside
-document.addEventListener("click", function (event) {
-  const hamburger = document.querySelector(".hamburger-btn");
-  const mobileMenu = document.querySelector(".mobile-menu");
-
-  if (!hamburger.contains(event.target) && !mobileMenu.contains(event.target)) {
-    hamburger.classList.remove("active");
-    mobileMenu.classList.remove("active");
-  }
-});
-
-// Close menu when scrolling
-window.addEventListener("scroll", function () {
-  const hamburger = document.querySelector(".hamburger-btn");
-  const mobileMenu = document.querySelector(".mobile-menu");
-
-  if (hamburger.classList.contains("active")) {
-    hamburger.classList.remove("active");
-    mobileMenu.classList.remove("active");
-  }
-});
-
-// Also update the mobile nav buttons to close menu when clicked
-document.addEventListener("DOMContentLoaded", function () {
-  // Add click events to mobile nav buttons to close menu after click
-  const mobileNavButtons = document.querySelectorAll(".mobile-nav-btn");
-  mobileNavButtons.forEach((button) => {
-    button.addEventListener("click", function () {
-      const hamburger = document.querySelector(".hamburger-btn");
-      const mobileMenu = document.querySelector(".mobile-menu");
-      if (hamburger && mobileMenu) {
-        hamburger.classList.remove("active");
-        mobileMenu.classList.remove("active");
-      }
-    });
-  });
-});
-
-// ===== TASKBAR INJECTION =====
 function injectTaskbar() {
-  // Create taskbar container if it doesn't exist
+  console.log("🔄 Injecting taskbar...");
+
   let taskbarContainer = document.getElementById("taskbar-container");
   if (!taskbarContainer) {
     taskbarContainer = document.createElement("div");
     taskbarContainer.id = "taskbar-container";
     document.body.appendChild(taskbarContainer);
+    console.log("✅ Created taskbar container");
   }
 
-  // Inject taskbar
   taskbarContainer.innerHTML = `
     <nav class="taskbar">
       <button class="logo-btn" onclick="scrollToTop()">
@@ -158,9 +94,72 @@ function injectTaskbar() {
       <div class="studio-text">21 STUDIOS</div>
     </nav>
   `;
+
+  console.log("✅ Taskbar injected successfully");
 }
+
+// Global functions
+window.scrollToTop = function () {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+};
+
+window.scrollToWork = function () {
+  const viewportHeight = window.innerHeight;
+  const targetScroll = viewportHeight * 0.51;
+  window.scrollTo({ top: targetScroll, behavior: "smooth" });
+};
+
+window.toggleMenu = function () {
+  const hamburger = document.querySelector(".hamburger-btn");
+  const mobileMenu = document.querySelector(".mobile-menu");
+  if (hamburger && mobileMenu) {
+    hamburger.classList.toggle("active");
+    mobileMenu.classList.toggle("active");
+  }
+};
+
+// Close menu when clicking outside
+document.addEventListener("click", function (event) {
+  const hamburger = document.querySelector(".hamburger-btn");
+  const mobileMenu = document.querySelector(".mobile-menu");
+
+  if (
+    hamburger &&
+    mobileMenu &&
+    !hamburger.contains(event.target) &&
+    !mobileMenu.contains(event.target)
+  ) {
+    hamburger.classList.remove("active");
+    mobileMenu.classList.remove("active");
+  }
+});
+
+// Close menu when scrolling
+window.addEventListener("scroll", function () {
+  const hamburger = document.querySelector(".hamburger-btn");
+  const mobileMenu = document.querySelector(".mobile-menu");
+
+  if (hamburger && mobileMenu && hamburger.classList.contains("active")) {
+    hamburger.classList.remove("active");
+    mobileMenu.classList.remove("active");
+  }
+});
 
 // Initialize when DOM is loaded
 document.addEventListener("DOMContentLoaded", function () {
+  console.log("🚀 DOM loaded - initializing taskbar");
   injectTaskbar();
+  initTaskbarScroll();
 });
+
+// Also initialize if DOM is already loaded
+if (
+  document.readyState === "complete" ||
+  document.readyState === "interactive"
+) {
+  console.log("⚡ DOM already ready - initializing taskbar immediately");
+  setTimeout(() => {
+    injectTaskbar();
+    initTaskbarScroll();
+  }, 100);
+}

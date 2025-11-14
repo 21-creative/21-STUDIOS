@@ -23,24 +23,3 @@ body {
   overflow: hidden;
   z-index: 1;
 }
-
-/* Glow effects for body */
-body.scrolled {
-  /* Add any body-level scroll effects here */
-}
-
-body.scrolled.peak-glow {
-  /* Add any body-level peak glow effects here */
-}
-
-body.logo-glow {
-  /* Add any body-level logo glow effects here */
-}
-
-body.logo-peak-glow {
-  /* Add any body-level logo peak glow effects here */
-}
-
-body.text-animate {
-  /* Add any body-level text animation effects here */
-}

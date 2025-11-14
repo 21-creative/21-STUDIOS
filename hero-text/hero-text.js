@@ -1,9 +1,26 @@
 // ============================================
-// HERO TEXT INJECTION
+// HERO TEXT - INDEPENDENT SCROLL LOGIC
 // ============================================
 
+function initHeroTextScroll() {
+  window.addEventListener("scroll", function () {
+    const scrollY = window.scrollY;
+    const viewportHeight = window.innerHeight;
+    const scrollInVH = (scrollY / viewportHeight) * 100;
+
+    // Hero text animations happen between 50vh-175vh
+    if (scrollInVH > 50 && scrollInVH <= 175) {
+      document.body.classList.add("hero-text-animate");
+    } else if (scrollInVH > 175) {
+      // Keep animations applied after 175vh
+      document.body.classList.add("hero-text-animate");
+    } else {
+      document.body.classList.remove("hero-text-animate");
+    }
+  });
+}
+
 function injectHeroText() {
-  // Create hero text container if it doesn't exist
   let heroTextContainer = document.getElementById("hero-text-container");
   if (!heroTextContainer) {
     heroTextContainer = document.createElement("div");
@@ -16,14 +33,12 @@ function injectHeroText() {
     heroTextContainer.style.pointerEvents = "none";
     heroTextContainer.style.zIndex = "2";
 
-    // Add to hero section
     const hero = document.getElementById("hero");
     if (hero) {
       hero.appendChild(heroTextContainer);
     }
   }
 
-  // Inject hero text
   heroTextContainer.innerHTML = `
     <span class="build-text">BUILD</span>
     <h1 class="legacy-text">LEGACY</h1>
@@ -33,4 +48,5 @@ function injectHeroText() {
 // Initialize when DOM is loaded
 document.addEventListener("DOMContentLoaded", function () {
   injectHeroText();
+  initHeroTextScroll();
 });
